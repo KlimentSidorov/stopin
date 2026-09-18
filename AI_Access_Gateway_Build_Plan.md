@@ -710,7 +710,7 @@ accordingly.
 
 Follow this order. Do not jump directly to advanced fingerprinting.
 
-### Milestone 1 --- Gateway foundation
+### Milestone 1 --- Gateway foundation [DONE]
 
 ``` text
 [x] Create repository
@@ -723,7 +723,7 @@ Follow this order. Do not jump directly to advanced fingerprinting.
 [x] Structured logs
 ```
 
-### Milestone 2 --- Session security
+### Milestone 2 --- Session security [DONE]
 
 ``` text
 [x] Challenge store
@@ -734,7 +734,7 @@ Follow this order. Do not jump directly to advanced fingerprinting.
 [x] Replay tests
 ```
 
-### Milestone 3 --- Challenge client
+### Milestone 3 --- Challenge client [DONE]
 
 ``` text
 [x] Minimal challenge page
@@ -744,36 +744,61 @@ Follow this order. Do not jump directly to advanced fingerprinting.
 [x] Protected navigation
 ```
 
-### Milestone 4 --- Attack it
+### Milestone 4 --- Attack it [DONE]
 
 ``` text
-[ ] requests_test.py
-[ ] playwright_test.py
-[ ] network interception test
-[ ] challenge automation test
-[ ] replay test
+[x] requests_test.py implemented
+[x] playwright_test.py implemented
+[x] Network interception test implemented (navigation, fetch, XHR)
+[x] Challenge automation test implemented
+[x] Replay test implemented
+[x] Run Requests client with the requests dependency
+[x] Run Chromium challenge automation and network interception tests
 ```
 
-### Milestone 5 --- Detection engine
+Code: `test-agents/` and `tests/adversarial/`. Verified on 2026-09-18 against
+isolated local gateway/origin servers using Requests and real Chromium.
+Full suite: **35 passed, 0 skipped**, with two dependency deprecation warnings.
+Browser checks cover challenge automation, DOM, navigation, fetch, and XHR bodies.
+See README.md for install/run commands.
+
+### Milestone 5 --- Detection engine [DONE]
 
 ``` text
-[ ] Signal schema
-[ ] Request signals
-[ ] Browser/session signals
-[ ] Behavior signals
-[ ] Tripwire prototype
-[ ] Reason codes
-[ ] ALLOW / CHALLENGE / BLOCK evaluator
+[x] Signal schema
+[x] Request signals
+[x] Browser/session signals
+[x] Behavior signals
+[x] Tripwire prototype
+[x] Reason codes
+[x] ALLOW / CHALLENGE / BLOCK evaluator
 ```
 
-### Milestone 6 --- Origin security
+Verified on 2026-09-18: **48 passed, 0 skipped**, including real Chromium.
+Signal collection and policy evaluation are separate. Tests cover single-signal
+false positives, combined evidence, session issuance, tripwire session binding,
+server-side activation logs, keyboard navigation, and evidence expiry/capacity.
+No single signal identifies a visitor as AI. See README.md for prototype thresholds
+and limitations; broad accessibility and real-traffic calibration remain future work.
+
+### Milestone 6 --- Origin security [DONE - LOCAL NEXT.JS INTEGRATION]
 
 ``` text
-[ ] Prevent direct origin access
-[ ] Protect HTML
-[ ] Protect API
-[ ] Test origin bypass
+[x] Prevent direct origin access
+[x] Protect HTML
+[x] Protect API
+[x] Test origin bypass
 ```
+
+Verified on 2026-09-18: **66 passed, 0 skipped**, including a production-built
+local Next.js origin behind the FastAPI gateway and real Chromium. Direct HTML,
+API, public-file, and generated Next.js asset access is denied. The origin guard
+rejects forged/duplicate credentials and gateway session cookies. Verified gateway
+requests succeed, and origin credentials are stripped before application code.
+
+Scope: local integration completed. The real production site and its hosting/network
+configuration were not changed. Production rollout and origin-firewall verification
+remain pending. See `docs/origin-security.md` for local setup and deployment requirements.
 
 ### Milestone 7 --- Dashboard
 
@@ -876,16 +901,29 @@ Once these five tests pass, begin Milestone 2.
 
 ## 23. Immediate Next Step
 
-Begin **Milestone 1: Python Gateway Foundation**.
+Milestones 1-6 are complete for the local implementation. Next development step:
+**Milestone 7 - Dashboard**. Milestone 6 production rollout remains separate and
+requires installing origin protection in the actual hosting environment.
 
-The first implementation will be a small Python HTTP service on
-`localhost:8000` that can either return an empty `403` or proxy a
-request to the configured test origin. Once that is running, use the
-existing `requests` and Playwright clients to attack/test it before
-adding any challenge logic.
+## Implementation status - 2026-09-18
 
-## Implementation status ? 2026-09-18
-
-Milestones 1?3 implemented and verified with the automated test suite. See README.md
+Milestones 1-6 implemented locally and verified with the automated test suite. See README.md
 for the browser flow and current development limitations. The nonce challenge
 is intentionally automatable; detection and production hardening are later milestones.
+
+## Milestone completion tracker
+
+| Milestone | Status |
+| --- | --- |
+| 1 - Gateway foundation | DONE |
+| 2 - Session security | DONE |
+| 3 - Challenge client | DONE |
+| 4 - Attack it | DONE |
+| 5 - Detection engine | DONE |
+| 6 - Origin security | DONE - local Next.js integration; production rollout pending |
+| 7 - Dashboard | Not started |
+| 8 - Production hardening | Not started |
+
+Milestone 4 explicitly documents that automation can solve the current challenge
+and copied valid bearer cookies remain usable. These are current design limitations,
+not evidence of human verification or replay-resistant access cookies.

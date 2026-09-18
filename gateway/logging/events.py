@@ -15,6 +15,8 @@ def record_decision(
     path: str,
     decision: str,
     reasons: list[str],
+    session_id: str | None = None,
+    signals: dict | None = None,
 ) -> None:
     event: dict[str, Any] = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -24,5 +26,8 @@ def record_decision(
         "path": path,
         "decision": decision,
         "reason_codes": reasons,
+        "session_id": session_id,
+        "signals": signals or {},
+        "verification_version": 1,
     }
     logger.info(json.dumps(event, separators=(",", ":")))

@@ -18,7 +18,7 @@ def browser():
         return httpx.Response(200, text="protected-origin", headers={"content-type": "text/html"})
 
     upstream = httpx.AsyncClient(transport=httpx.MockTransport(origin))
-    with TestClient(create_app(Settings(), upstream)) as client:
+    with TestClient(create_app(Settings(origin_secret="test-origin-secret-at-least-32-characters", ), upstream)) as client:
         yield client, calls
 
 

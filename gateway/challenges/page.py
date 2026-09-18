@@ -37,7 +37,8 @@ form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const button = form.querySelector('button');
   button.disabled = true;
-  status.textContent = 'Verifying access?';
+  status.textContent = 'Verifying access...';
+  const started = performance.now();
   try {
     const issued = await fetch('/challenge', {
       method: 'POST', credentials: 'same-origin',
@@ -48,7 +49,8 @@ form.addEventListener('submit', async (event) => {
     const verified = await fetch('/challenge/verify', {
       method: 'POST', credentials: 'same-origin',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(challenge)
+      body: JSON.stringify({...challenge, browser: {javascript: true,
+        webdriver: navigator.webdriver === true, elapsed_ms: performance.now() - started}})
     });
     if (!verified.ok) throw new Error('verification failed');
     window.location.assign(form.dataset.next);

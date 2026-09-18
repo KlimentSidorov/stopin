@@ -37,15 +37,19 @@ async def proxy_request(
     client: httpx.AsyncClient,
     request: Request,
     origin_url: str,
+    origin_secret: str,
 ) -> httpx.Response:
     body = await request.body()
     target_url = f"{origin_url}/{request.path_params['path']}"
     if request.query_params:
         target_url = f"{target_url}?{request.query_params}"
 
+    headers = forwarded_headers(request)
+    headers["x-gateway-origin-secret"] = origin_secret
     return await client.request(
         method=request.method,
         url=target_url,
         content=body,
-        headers=forwarded_headers(request),
+        headers=headers,
+        follow_redirects=False,
     )

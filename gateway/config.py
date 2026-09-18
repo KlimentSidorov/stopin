@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import os
 import secrets
 
@@ -15,6 +15,7 @@ class Settings:
 
     timeout_seconds: float = 5.0
     cookie_secure: bool = False
+    origin_secret: str = field(default="", repr=False)
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -35,6 +36,7 @@ class Settings:
                 "GATEWAY_TOKEN_SECRET",
                 secrets.token_urlsafe(32),
             ),
+            origin_secret=os.getenv("GATEWAY_ORIGIN_SECRET", ""),
             cookie_secure=os.getenv("GATEWAY_COOKIE_SECURE", "false").lower() == "true",
             timeout_seconds=float(
                 os.getenv(

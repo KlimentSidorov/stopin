@@ -22,7 +22,7 @@ def make_client(origin: Origin) -> TestClient:
     transport = httpx.MockTransport(origin.handle)
     client = httpx.AsyncClient(transport=transport)
     app = create_app(
-        Settings(
+        Settings(origin_secret="test-origin-secret-at-least-32-characters",
             origin_url="http://origin.test",
             site_id="test-site",
             dev_access_token="test-token",
