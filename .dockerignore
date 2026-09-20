@@ -1,0 +1,7 @@
+*
+!gateway/
+!gateway/**
+!requirements.lock
+!Dockerfile
+**/__pycache__/
+**/*.pyc

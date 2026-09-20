@@ -15,11 +15,15 @@ def create_access_token(session_id: str, secret: str, lifetime_seconds: int = 30
     return f"{encoded}.{signature}"
 
 
-def verify_access_token(token: str, secret: str, site_id: str = "test-site") -> str | None:
+def verify_access_token(token: str, secret: str, site_id: str = "test-site",
+                        previous_secrets: tuple[str, ...] = ()) -> str | None:
     try:
+        if len(token) > 4096:
+            return None
         encoded, signature = token.split(".", 1)
-        expected = hmac.new(secret.encode(), encoded.encode("ascii"), hashlib.sha256).hexdigest()
-        if not hmac.compare_digest(signature, expected):
+        signatures = [hmac.new(key.encode(), encoded.encode("ascii"), hashlib.sha256).hexdigest()
+                      for key in (secret, *previous_secrets)]
+        if not any(hmac.compare_digest(signature, expected) for expected in signatures):
             return None
         payload = json.loads(base64.b64decode(encoded, altchars=b"-_", validate=True))
         if not isinstance(payload, dict):

@@ -800,28 +800,151 @@ Scope: local integration completed. The real production site and its hosting/net
 configuration were not changed. Production rollout and origin-firewall verification
 remain pending. See `docs/origin-security.md` for local setup and deployment requirements.
 
-### Milestone 7 --- Dashboard
+### Milestone 7 --- Dashboard [DONE - LOCAL INTEGRATION]
 
 ``` text
-[ ] Site configuration
-[ ] Traffic overview
-[ ] Decisions
-[ ] Reason codes
-[ ] Policy configuration
+[x] Site configuration
+[x] Traffic overview
+[x] Decisions
+[x] Reason codes
+[x] Policy configuration
 ```
 
-### Milestone 8 --- Production hardening
+Implemented in `../Stopin-Dashboard` with Next.js, Tailwind CSS, and a local SQLite
+database via the libSQL client. The Python gateway optionally reads saved site
+origins and policies and persists real decision events to the shared database.
+Includes event filtering/inspection, UTC traffic charts, strictness, route rules,
+and integration instructions. Verified on 2026-09-19: **70 gateway tests passed**,
+**3 dashboard data tests passed**, production build and real Chromium checks.
+Browser checks cover persisted forms, actual gateway policy enforcement, event
+filters/inspection, empty states, and mobile navigation. This is a local operator
+console; remote gateway transport, authentication, and tenant isolation are future work.
+
+### Milestone 8 --- Production hardening [IMPLEMENTED - HOSTED VALIDATION PENDING]
 
 ``` text
-[ ] Redis/distributed session state
-[ ] Database
-[ ] Metrics
-[ ] Rate limiting
-[ ] Key rotation
-[ ] Multi-tenant isolation
-[ ] Deployment automation
-[ ] Security testing
+[x] Redis/distributed session state (sessions, atomic challenges, evidence)
+[x] Database (persistent SQLite, schema bootstrap, backup and retention commands)
+[x] Metrics (authenticated, Redis-shared Prometheus request totals)
+[x] Rate limiting (shared issuance/request limits and actual body-byte limits)
+[x] Key rotation (active signer plus bounded previous-key verification)
+[x] Multi-tenant isolation (site-bound gateway deployments and Redis namespaces)
+[x] Deployment automation (Docker packaging, Railway config and CI workflow)
+[x] Security testing (local suite; real Redis/container checks configured in CI)
+[ ] Execute hosted CI/container/real-Redis validation and staging rollout
+[ ] Public dashboard authentication and tenant authorization (local console remains private)
 ```
+
+This is a single-operator starting deployment, not a public multi-tenant dashboard.
+One gateway service uses two workers, Redis and a persistent SQLite volume.
+Remote database/dashboard transport is still required for replicas or live remote
+dashboard management. See `docs/production.md` for operating instructions and
+the remaining hosting, restore and load-test checks. No paid service or real
+origin deployment has been created by this implementation.
+
+------------------------------------------------------------------------
+
+### Milestone 9 --- Agent Interaction Challenge [DONE - LOCAL EXPERIMENT]
+
+``` text
+[x] Extend the existing unique per-session tripwire with a 300-second lifetime
+[x] Preserve the accessible visible verification path; it never fetches the trap
+[x] Record server-side activation, replay and bounded event ordering
+[x] Feed trap phase and sequence reason codes into the existing signal/policy engine
+[x] Keep activation/replay/sequence in one signal group; no single-trap classification
+[x] Reserve the trap namespace; never proxy or return protected HTML/API content
+[x] Test keyboard navigation and ordinary Playwright without trap activation
+[x] Test activation, expiry, replay, wrong-session access and HTML/API isolation
+[x] Test atomic in-memory and Redis-backed activation and cross-worker ordering
+[x] Add a resource-exploring Playwright agent and a browser-report-omission variant
+[x] Record trap activation, session issuance, policy reasons and content accessibility
+[x] Document false positives, bypasses and the limits of this experiment
+[x] Run the full existing gateway suite and dashboard tests after implementation
+```
+
+Verified on 2026-09-20: **98 gateway tests passed, 1 skipped**, with two existing
+dependency deprecation warnings; **3 dashboard tests passed**. Real Chromium and
+the existing local Next.js origin tests ran. The real-Redis integration test is
+the sole skip because `TEST_REDIS_URL` is unset; new Redis-backed unit tests ran
+with fakeredis. Real-Redis trap atomicity and ordering checks are included in the
+opt-in integration test but remain unverified against a real Redis server locally.
+
+Observed outcomes:
+
+| Strategy | Trap | Session issued | Protected HTML/API |
+| --- | --- | --- | --- |
+| Keyboard human-style navigation | No | Yes | Accessible after verification |
+| Ordinary Playwright | No | Yes | Accessible after verification |
+| Resource-exploring Playwright, normal report | Yes | No | Inaccessible |
+| Resource-exploring Playwright, report omitted | Yes | Yes | Accessible after verification |
+
+The reporting explorer was denied with `tripwire_activation`,
+`trap_before_verification`, `browser_automation_hint`, `multiple_signal_groups`.
+The report-omitting explorer was allowed with `tripwire_activation`,
+`trap_before_verification`, `valid_verified_session`. Trap sequence and replay
+do not count as extra independent signal groups. The report-omission result is
+a documented bypass, not a detection success.
+
+This is a bounded, deterministic resource-exploration agent, not an LLM-backed
+agent evaluation. Keyboard controls are automated interaction checks, not a
+real-human study. No AI identity, detection accuracy, or false-positive rate is
+established. Gateway/SaaS architecture, origin protection and dashboard UI were
+not redesigned. See [experiment protocol, results and limitations](docs/agent-interaction-challenge.md).
+
+------------------------------------------------------------------------
+
+### Milestone 10 --- Adaptive Agent Interaction Experiments [IMPLEMENTED AND MEASURED LOCALLY]
+
+``` text
+[x] Reuse challenge/session/tripwire/evidence and Redis abstractions
+[x] Add AgentExperiment records with random IDs, scoped binding, expiry and replay
+[x] Support resource, protocol-action and metadata-reference families
+[x] Randomize identifiers and descriptor exposure order; retain a normal accessible path
+[x] Record server-observed exposure, activation and sequence independently of browser claims
+[x] Preserve server evidence when telemetry is omitted or spoofed
+[x] Keep correlated experiments in one signal group; do not add arbitrary block thresholds
+[x] Add reusable normal, resource, protocol, no-telemetry and StopIn-aware browser strategies
+[x] Measure each strategy against three fresh randomized challenges
+[x] Add keyboard, mouse, slow, repeated-navigation and refresh/back controls
+[x] Verify isolation, expiry, replay, session binding, randomness, secret hygiene and atomicity
+[x] Save actual per-run activation/order/report/decision/reason/session/HTML/API results
+[x] Document false positives, presentation bias and observed bypasses
+[x] Run the complete gateway suite, all real Chromium adversarial tests and dashboard tests
+```
+
+Verified on 2026-09-20: **145 gateway tests passed, 1 skipped**, with two existing
+dependency deprecation warnings; **3 dashboard tests passed**. Real Chromium and
+the existing local Next.js origin tests ran. Real Redis is the sole skip because
+`TEST_REDIS_URL` was unset; fakeredis tests cover all three families, and the
+opt-in real-Redis test now includes their cross-worker activation/replay checks.
+
+Measured results (three independent contexts/challenges per strategy):
+
+| Strategy | Activated families | Report supplied? | Verification | Session | HTML | API |
+| --- | --- | --- | --- | --- | --- | --- |
+| Normal visible Playwright | None | Yes | ALLOW | Yes | Yes | Yes |
+| Resource explorer | Resource, metadata | Yes | BLOCK | No | No | No |
+| Protocol explorer | All three | Yes | BLOCK | No | No | No |
+| Telemetry-omitting explorer | All three | No | ALLOW | Yes | Yes | Yes |
+| StopIn-aware adversary | None (three deliberately ignored) | No | ALLOW | Yes | Yes | Yes |
+
+All five human-style controls activated no experiments and obtained access after
+verification. These are automated controls, not human false-positive-rate studies.
+All pre-authorization HTML/API probes and experiment responses lacked protected
+content. Denied explorers never reached the origin.
+
+**Recorded bypasses:** the aware adversary succeeded in 3/3 runs by ignoring all
+optional resources, and the telemetry-omitting explorer succeeded in 3/3 runs
+despite all three observed activations. Reporting explorers still depended on
+the inherited WebDriver hint for their second signal group. No policy was added
+to hide these outcomes. Test success is not detection success; reliable AI
+detection and real-world false-positive rates remain unestablished.
+
+See [architecture, complete matrix with activation order and exact reason codes,
+limitations and research questions](docs/adaptive-agent-experiments.md) and the
+[actual 20-run JSON artifact](docs/adaptive-agent-results.json). The agents are
+deterministic exploration strategies, not LLM-backed agents. Existing gateway,
+origin guard, dashboard and production-hardening architecture was retained.
 
 ------------------------------------------------------------------------
 
@@ -901,15 +1024,17 @@ Once these five tests pass, begin Milestone 2.
 
 ## 23. Immediate Next Step
 
-Milestones 1-6 are complete for the local implementation. Next development step:
-**Milestone 7 - Dashboard**. Milestone 6 production rollout remains separate and
-requires installing origin protection in the actual hosting environment.
+Milestones 1-7 are complete locally, Milestone 8 gateway hardening is implemented,
+and Milestones 9-10 are implemented and measured as local agent interaction experiments.
+Next: execute CI and verify the Railway staging deployment, Redis behavior,
+backup restoration and expected load. Milestone 6 production rollout remains
+separate and requires origin protection in the actual hosting environment.
 
-## Implementation status - 2026-09-18
+## Implementation status - 2026-09-19
 
-Milestones 1-6 implemented locally and verified with the automated test suite. See README.md
-for the browser flow and current development limitations. The nonce challenge
-is intentionally automatable; detection and production hardening are later milestones.
+Milestones 1-7 implemented locally and verified with the automated test suite. See README.md
+for the browser flow and `docs/production.md` for Milestone 8 deployment boundaries.
+The nonce challenge is intentionally automatable; hardening does not establish humanity.
 
 ## Milestone completion tracker
 
@@ -921,8 +1046,10 @@ is intentionally automatable; detection and production hardening are later miles
 | 4 - Attack it | DONE |
 | 5 - Detection engine | DONE |
 | 6 - Origin security | DONE - local Next.js integration; production rollout pending |
-| 7 - Dashboard | Not started |
-| 8 - Production hardening | Not started |
+| 7 - Dashboard | DONE - local Next.js/Tailwind dashboard and SQLite gateway integration |
+| 8 - Production hardening | Gateway implementation complete; hosted validation and public dashboard authorization pending |
+| 9 - Agent Interaction Challenge | DONE - local experiment; 98 passed, 1 real-Redis test skipped; bypass and false-positive limitations documented |
+| 10 - Adaptive Agent Interaction Experiments | IMPLEMENTED AND MEASURED LOCALLY - 145 passed, 1 real-Redis test skipped; aware-adversary and telemetry-omission bypasses recorded |
 
 Milestone 4 explicitly documents that automation can solve the current challenge
 and copied valid bearer cookies remain usable. These are current design limitations,

@@ -19,6 +19,17 @@ def evaluate_signals(signals: Signals) -> tuple[Decision, list[str]]:
     reasons = []
     if signals.tripwires.get("activated"):
         reasons.append("tripwire_activation")
+        phase = signals.tripwires.get("activation_phase")
+        if phase in ("before_verification", "after_verification_started"):
+            reasons.append("trap_" + phase)
+        if signals.tripwires.get("replays"):
+            reasons.append("trap_replay")
+        families = {item["family"] for item in signals.tripwires.get("experiments", [])
+                    if item["activated"]}
+        if len(families) > 1:
+            reasons.append("multiple_experiment_families")
+    # Trap phase and replay are correlated sequence evidence, not independent
+    # signal groups. They explain a decision without multiplying its risk weight.
     if signals.rate.get("burst"):
         reasons.append("request_burst")
     if signals.request.get("header_inconsistent"):

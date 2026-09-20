@@ -1,9 +1,45 @@
 # AI Access Gateway
 
-Milestones 1-6 are complete locally: gateway, sessions, challenge client, adversarial
-tests, signal/policy engine, and protected Next.js origin integration.
-Latest full suite: **66 passed, 0 skipped** on 2026-09-18 (two dependency warnings).
+Milestone 10 adds three randomized experiment families and a five-strategy
+Chromium harness. Latest local verification (2026-09-20): **145 gateway tests
+passed, 1 real-Redis test skipped**, plus **3 dashboard tests passed**.
+The StopIn-aware adversary and telemetry-omitting explorer both obtained
+protected content; these are documented bypasses, not detection successes.
+See [adaptive experiment architecture and measured results](docs/adaptive-agent-experiments.md)
+and the [recorded result matrix](docs/adaptive-agent-results.json).
+
+Milestone 9 adds an experimental Agent Interaction Challenge on the existing
+session tripwire. Local verification (2026-09-20): **98 passed, 1 skipped**
+(real Redis requires `TEST_REDIS_URL`), plus **3 dashboard tests passed**.
+See [experiment results and limitations](docs/agent-interaction-challenge.md).
+Resource exploration can activate the trap; ordinary Playwright and the tested
+report-omission variant can still obtain access. Activation does not prove AI.
+
+Milestones 1-7 are complete locally: gateway, sessions, challenge client, adversarial
+tests, signal/policy engine, protected Next.js origin integration, and dashboard.
+Milestone 8 gateway hardening is implemented; hosted rollout verification remains pending.
+Milestone 8 verification (2026-09-19): **82 passed, 1 skipped** (real Redis requires
+`TEST_REDIS_URL`); runtime dependency audit found no known vulnerabilities.
+See [production setup and limitations](docs/production.md) for Railway, Redis,
+database maintenance, metrics, rate limits, key rotation and tenant boundaries.
 Production origin rollout remains pending; the real website has not been changed.
+
+## Milestone 7: dashboard
+
+The Next.js + Tailwind dashboard lives in `../Stopin-Dashboard`. Run `npm install`
+and `npm run dev` there, then open http://127.0.0.1:3001. Add a site using the same
+ID as `GATEWAY_SITE_ID`, and configure its protected origin and policy.
+
+Set `GATEWAY_DASHBOARD_DB` to the absolute path of `../Stopin-Dashboard/data/stopin.db`
+before starting the gateway. Real decisions, reason codes, and signals appear in
+the event explorer; saved origins and policies apply on the next request.
+Leaving this variable unset preserves the existing gateway behavior.
+
+The console includes site settings, traffic charts, decision filters, request
+inspection, strictness, ordered route rules, and integration instructions.
+SQLite is shared locally. The dashboard supports a remote libSQL/Turso URL, but
+the Python bridge remains local SQLite for now. See the dashboard README for
+setup, policy semantics, validation, and production-hardening boundaries.
 
 ## Run
 
@@ -42,14 +78,15 @@ server-generated HttpOnly browser cookie, and permit one verification attempt.
 Successful challenges are consumed. Access tokens include session ID, site ID,
 issue/expiry times, and verification version, authenticated with HMAC-SHA256.
 Every protected request checks both the token and active server-side session.
-Restarting the worker revokes access. The optional `GATEWAY_DEV_ACCESS_TOKEN`
+In development, restarting the worker revokes access. Redis-backed deployments
+share sessions and revocation across workers. The optional `GATEWAY_DEV_ACCESS_TOKEN`
 bypass is disabled by default; enable it explicitly only for development.
 
 This nonce round trip demonstrates the access protocol; automation can complete
-it. It is not human detection. The prototype signal engine is described below. The stores
-are in memory: use one worker for now. Distributed storage, cleanup/capacity
-limits, deployment-specific network restrictions, rate limiting, and production
-hardening remain future work. Apply the origin guard and hosting restrictions
+it. It is not human detection. The prototype signal engine is described below.
+Development stores remain in memory: use one worker without Redis. Production
+requires Redis, explicit keys, secure cookies, an allowed-host list and a persisted
+configuration database. Apply the origin guard and hosting restrictions
 before deployment to prevent direct bypass.
 
 ## Tests

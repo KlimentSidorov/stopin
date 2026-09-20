@@ -1,0 +1,1815 @@
+{
+  "recorded_at": "2026-09-20T16:03:04.537353+00:00",
+  "agent_type": "deterministic Playwright strategies, not LLM agents",
+  "policy": "existing balanced policy; no new blocking thresholds",
+  "runs": [
+    {
+      "strategy": "normal_visible_flow",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": true,
+      "verification_status": 200,
+      "access_session_issued": true,
+      "protected_html_accessible": true,
+      "protected_api_accessible": true,
+      "resources": [],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [],
+      "activation_order": [],
+      "verification_decision": "ALLOW",
+      "reason_codes": [
+        "browser_automation_hint",
+        "valid_verified_session"
+      ],
+      "server_observed_report_presence": true,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 5,
+          "event": "verification_submitted",
+          "elapsed_ms": 9
+        },
+        {
+          "order": 6,
+          "event": "challenge_consumed",
+          "elapsed_ms": 9
+        },
+        {
+          "order": 7,
+          "event": "session_issued",
+          "elapsed_ms": 9
+        }
+      ],
+      "run": 1
+    },
+    {
+      "strategy": "normal_visible_flow",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": true,
+      "verification_status": 200,
+      "access_session_issued": true,
+      "protected_html_accessible": true,
+      "protected_api_accessible": true,
+      "resources": [],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [],
+      "activation_order": [],
+      "verification_decision": "ALLOW",
+      "reason_codes": [
+        "browser_automation_hint",
+        "valid_verified_session"
+      ],
+      "server_observed_report_presence": true,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 5,
+          "event": "verification_submitted",
+          "elapsed_ms": 12
+        },
+        {
+          "order": 6,
+          "event": "challenge_consumed",
+          "elapsed_ms": 12
+        },
+        {
+          "order": 7,
+          "event": "session_issued",
+          "elapsed_ms": 12
+        }
+      ],
+      "run": 2
+    },
+    {
+      "strategy": "normal_visible_flow",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": true,
+      "verification_status": 200,
+      "access_session_issued": true,
+      "protected_html_accessible": true,
+      "protected_api_accessible": true,
+      "resources": [],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [],
+      "activation_order": [],
+      "verification_decision": "ALLOW",
+      "reason_codes": [
+        "browser_automation_hint",
+        "valid_verified_session"
+      ],
+      "server_observed_report_presence": true,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 5,
+          "event": "verification_submitted",
+          "elapsed_ms": 8
+        },
+        {
+          "order": 6,
+          "event": "challenge_consumed",
+          "elapsed_ms": 8
+        },
+        {
+          "order": 7,
+          "event": "session_issued",
+          "elapsed_ms": 8
+        }
+      ],
+      "run": 3
+    },
+    {
+      "strategy": "resource_explorer",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": true,
+      "verification_status": 403,
+      "access_session_issued": false,
+      "protected_html_accessible": false,
+      "protected_api_accessible": false,
+      "resources": [
+        {
+          "method": "GET",
+          "status": 200,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 405,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        }
+      ],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [
+        "resource",
+        "metadata_reference"
+      ],
+      "activation_order": [
+        {
+          "family": "resource",
+          "order": 5
+        },
+        {
+          "family": "metadata_reference",
+          "order": 6
+        }
+      ],
+      "verification_decision": "BLOCK",
+      "reason_codes": [
+        "tripwire_activation",
+        "trap_before_verification",
+        "multiple_experiment_families",
+        "browser_automation_hint",
+        "multiple_signal_groups"
+      ],
+      "server_observed_report_presence": true,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 5,
+          "event": "experiment_activated",
+          "elapsed_ms": 9,
+          "family": "resource"
+        },
+        {
+          "order": 6,
+          "event": "experiment_activated",
+          "elapsed_ms": 15,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 7,
+          "event": "verification_submitted",
+          "elapsed_ms": 18
+        },
+        {
+          "order": 8,
+          "event": "challenge_consumed",
+          "elapsed_ms": 18
+        },
+        {
+          "order": 9,
+          "event": "verification_denied",
+          "elapsed_ms": 18
+        }
+      ],
+      "run": 1
+    },
+    {
+      "strategy": "resource_explorer",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": true,
+      "verification_status": 403,
+      "access_session_issued": false,
+      "protected_html_accessible": false,
+      "protected_api_accessible": false,
+      "resources": [
+        {
+          "method": "GET",
+          "status": 200,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 405,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        }
+      ],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [
+        "resource",
+        "metadata_reference"
+      ],
+      "activation_order": [
+        {
+          "family": "resource",
+          "order": 5
+        },
+        {
+          "family": "metadata_reference",
+          "order": 6
+        }
+      ],
+      "verification_decision": "BLOCK",
+      "reason_codes": [
+        "tripwire_activation",
+        "trap_before_verification",
+        "multiple_experiment_families",
+        "browser_automation_hint",
+        "multiple_signal_groups"
+      ],
+      "server_observed_report_presence": true,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 5,
+          "event": "experiment_activated",
+          "elapsed_ms": 13,
+          "family": "resource"
+        },
+        {
+          "order": 6,
+          "event": "experiment_activated",
+          "elapsed_ms": 19,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 7,
+          "event": "verification_submitted",
+          "elapsed_ms": 22
+        },
+        {
+          "order": 8,
+          "event": "challenge_consumed",
+          "elapsed_ms": 22
+        },
+        {
+          "order": 9,
+          "event": "verification_denied",
+          "elapsed_ms": 22
+        }
+      ],
+      "run": 2
+    },
+    {
+      "strategy": "resource_explorer",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": true,
+      "verification_status": 403,
+      "access_session_issued": false,
+      "protected_html_accessible": false,
+      "protected_api_accessible": false,
+      "resources": [
+        {
+          "method": "GET",
+          "status": 200,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 405,
+          "protected_content": false
+        }
+      ],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [
+        "resource",
+        "metadata_reference"
+      ],
+      "activation_order": [
+        {
+          "family": "resource",
+          "order": 5
+        },
+        {
+          "family": "metadata_reference",
+          "order": 6
+        }
+      ],
+      "verification_decision": "BLOCK",
+      "reason_codes": [
+        "tripwire_activation",
+        "trap_before_verification",
+        "multiple_experiment_families",
+        "browser_automation_hint",
+        "multiple_signal_groups"
+      ],
+      "server_observed_report_presence": true,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 5,
+          "event": "experiment_activated",
+          "elapsed_ms": 9,
+          "family": "resource"
+        },
+        {
+          "order": 6,
+          "event": "experiment_activated",
+          "elapsed_ms": 12,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 7,
+          "event": "verification_submitted",
+          "elapsed_ms": 18
+        },
+        {
+          "order": 8,
+          "event": "challenge_consumed",
+          "elapsed_ms": 18
+        },
+        {
+          "order": 9,
+          "event": "verification_denied",
+          "elapsed_ms": 18
+        }
+      ],
+      "run": 3
+    },
+    {
+      "strategy": "protocol_explorer",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": true,
+      "verification_status": 403,
+      "access_session_issued": false,
+      "protected_html_accessible": false,
+      "protected_api_accessible": false,
+      "resources": [
+        {
+          "method": "GET",
+          "status": 200,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "POST",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        }
+      ],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [
+        "resource",
+        "protocol_action",
+        "metadata_reference"
+      ],
+      "activation_order": [
+        {
+          "family": "resource",
+          "order": 5
+        },
+        {
+          "family": "protocol_action",
+          "order": 6
+        },
+        {
+          "family": "metadata_reference",
+          "order": 7
+        }
+      ],
+      "verification_decision": "BLOCK",
+      "reason_codes": [
+        "tripwire_activation",
+        "trap_before_verification",
+        "multiple_experiment_families",
+        "browser_automation_hint",
+        "multiple_signal_groups"
+      ],
+      "server_observed_report_presence": true,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 5,
+          "event": "experiment_activated",
+          "elapsed_ms": 10,
+          "family": "resource"
+        },
+        {
+          "order": 6,
+          "event": "experiment_activated",
+          "elapsed_ms": 13,
+          "family": "protocol_action"
+        },
+        {
+          "order": 7,
+          "event": "experiment_activated",
+          "elapsed_ms": 16,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 8,
+          "event": "verification_submitted",
+          "elapsed_ms": 19
+        },
+        {
+          "order": 9,
+          "event": "challenge_consumed",
+          "elapsed_ms": 19
+        },
+        {
+          "order": 10,
+          "event": "verification_denied",
+          "elapsed_ms": 19
+        }
+      ],
+      "run": 1
+    },
+    {
+      "strategy": "protocol_explorer",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": true,
+      "verification_status": 403,
+      "access_session_issued": false,
+      "protected_html_accessible": false,
+      "protected_api_accessible": false,
+      "resources": [
+        {
+          "method": "GET",
+          "status": 200,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "POST",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        }
+      ],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [
+        "resource",
+        "protocol_action",
+        "metadata_reference"
+      ],
+      "activation_order": [
+        {
+          "family": "resource",
+          "order": 5
+        },
+        {
+          "family": "protocol_action",
+          "order": 6
+        },
+        {
+          "family": "metadata_reference",
+          "order": 7
+        }
+      ],
+      "verification_decision": "BLOCK",
+      "reason_codes": [
+        "tripwire_activation",
+        "trap_before_verification",
+        "multiple_experiment_families",
+        "browser_automation_hint",
+        "multiple_signal_groups"
+      ],
+      "server_observed_report_presence": true,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 5,
+          "event": "experiment_activated",
+          "elapsed_ms": 8,
+          "family": "resource"
+        },
+        {
+          "order": 6,
+          "event": "experiment_activated",
+          "elapsed_ms": 12,
+          "family": "protocol_action"
+        },
+        {
+          "order": 7,
+          "event": "experiment_activated",
+          "elapsed_ms": 15,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 8,
+          "event": "verification_submitted",
+          "elapsed_ms": 19
+        },
+        {
+          "order": 9,
+          "event": "challenge_consumed",
+          "elapsed_ms": 19
+        },
+        {
+          "order": 10,
+          "event": "verification_denied",
+          "elapsed_ms": 19
+        }
+      ],
+      "run": 2
+    },
+    {
+      "strategy": "protocol_explorer",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": true,
+      "verification_status": 403,
+      "access_session_issued": false,
+      "protected_html_accessible": false,
+      "protected_api_accessible": false,
+      "resources": [
+        {
+          "method": "GET",
+          "status": 200,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "POST",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        }
+      ],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [
+        "resource",
+        "protocol_action",
+        "metadata_reference"
+      ],
+      "activation_order": [
+        {
+          "family": "resource",
+          "order": 5
+        },
+        {
+          "family": "protocol_action",
+          "order": 6
+        },
+        {
+          "family": "metadata_reference",
+          "order": 7
+        }
+      ],
+      "verification_decision": "BLOCK",
+      "reason_codes": [
+        "tripwire_activation",
+        "trap_before_verification",
+        "multiple_experiment_families",
+        "browser_automation_hint",
+        "multiple_signal_groups"
+      ],
+      "server_observed_report_presence": true,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 5,
+          "event": "experiment_activated",
+          "elapsed_ms": 11,
+          "family": "resource"
+        },
+        {
+          "order": 6,
+          "event": "experiment_activated",
+          "elapsed_ms": 14,
+          "family": "protocol_action"
+        },
+        {
+          "order": 7,
+          "event": "experiment_activated",
+          "elapsed_ms": 16,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 8,
+          "event": "verification_submitted",
+          "elapsed_ms": 19
+        },
+        {
+          "order": 9,
+          "event": "challenge_consumed",
+          "elapsed_ms": 19
+        },
+        {
+          "order": 10,
+          "event": "verification_denied",
+          "elapsed_ms": 20
+        }
+      ],
+      "run": 3
+    },
+    {
+      "strategy": "telemetry_omitting_explorer",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": false,
+      "verification_status": 200,
+      "access_session_issued": true,
+      "protected_html_accessible": true,
+      "protected_api_accessible": true,
+      "resources": [
+        {
+          "method": "GET",
+          "status": 200,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "POST",
+          "status": 204,
+          "protected_content": false
+        }
+      ],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [
+        "resource",
+        "metadata_reference",
+        "protocol_action"
+      ],
+      "activation_order": [
+        {
+          "family": "resource",
+          "order": 5
+        },
+        {
+          "family": "metadata_reference",
+          "order": 6
+        },
+        {
+          "family": "protocol_action",
+          "order": 7
+        }
+      ],
+      "verification_decision": "ALLOW",
+      "reason_codes": [
+        "tripwire_activation",
+        "trap_before_verification",
+        "multiple_experiment_families",
+        "valid_verified_session"
+      ],
+      "server_observed_report_presence": false,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 5,
+          "event": "experiment_activated",
+          "elapsed_ms": 19,
+          "family": "resource"
+        },
+        {
+          "order": 6,
+          "event": "experiment_activated",
+          "elapsed_ms": 26,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 7,
+          "event": "experiment_activated",
+          "elapsed_ms": 29,
+          "family": "protocol_action"
+        },
+        {
+          "order": 8,
+          "event": "verification_submitted",
+          "elapsed_ms": 32
+        },
+        {
+          "order": 9,
+          "event": "challenge_consumed",
+          "elapsed_ms": 33
+        },
+        {
+          "order": 10,
+          "event": "session_issued",
+          "elapsed_ms": 33
+        }
+      ],
+      "run": 1
+    },
+    {
+      "strategy": "telemetry_omitting_explorer",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": false,
+      "verification_status": 200,
+      "access_session_issued": true,
+      "protected_html_accessible": true,
+      "protected_api_accessible": true,
+      "resources": [
+        {
+          "method": "GET",
+          "status": 200,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "POST",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        }
+      ],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [
+        "resource",
+        "protocol_action",
+        "metadata_reference"
+      ],
+      "activation_order": [
+        {
+          "family": "resource",
+          "order": 5
+        },
+        {
+          "family": "protocol_action",
+          "order": 6
+        },
+        {
+          "family": "metadata_reference",
+          "order": 7
+        }
+      ],
+      "verification_decision": "ALLOW",
+      "reason_codes": [
+        "tripwire_activation",
+        "trap_before_verification",
+        "multiple_experiment_families",
+        "valid_verified_session"
+      ],
+      "server_observed_report_presence": false,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 5,
+          "event": "experiment_activated",
+          "elapsed_ms": 9,
+          "family": "resource"
+        },
+        {
+          "order": 6,
+          "event": "experiment_activated",
+          "elapsed_ms": 12,
+          "family": "protocol_action"
+        },
+        {
+          "order": 7,
+          "event": "experiment_activated",
+          "elapsed_ms": 14,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 8,
+          "event": "verification_submitted",
+          "elapsed_ms": 18
+        },
+        {
+          "order": 9,
+          "event": "challenge_consumed",
+          "elapsed_ms": 18
+        },
+        {
+          "order": 10,
+          "event": "session_issued",
+          "elapsed_ms": 18
+        }
+      ],
+      "run": 2
+    },
+    {
+      "strategy": "telemetry_omitting_explorer",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": false,
+      "verification_status": 200,
+      "access_session_issued": true,
+      "protected_html_accessible": true,
+      "protected_api_accessible": true,
+      "resources": [
+        {
+          "method": "GET",
+          "status": 200,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "POST",
+          "status": 204,
+          "protected_content": false
+        },
+        {
+          "method": "GET",
+          "status": 204,
+          "protected_content": false
+        }
+      ],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [
+        "resource",
+        "protocol_action",
+        "metadata_reference"
+      ],
+      "activation_order": [
+        {
+          "family": "resource",
+          "order": 5
+        },
+        {
+          "family": "protocol_action",
+          "order": 6
+        },
+        {
+          "family": "metadata_reference",
+          "order": 7
+        }
+      ],
+      "verification_decision": "ALLOW",
+      "reason_codes": [
+        "tripwire_activation",
+        "trap_before_verification",
+        "multiple_experiment_families",
+        "valid_verified_session"
+      ],
+      "server_observed_report_presence": false,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 5,
+          "event": "experiment_activated",
+          "elapsed_ms": 9,
+          "family": "resource"
+        },
+        {
+          "order": 6,
+          "event": "experiment_activated",
+          "elapsed_ms": 12,
+          "family": "protocol_action"
+        },
+        {
+          "order": 7,
+          "event": "experiment_activated",
+          "elapsed_ms": 15,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 8,
+          "event": "verification_submitted",
+          "elapsed_ms": 18
+        },
+        {
+          "order": 9,
+          "event": "challenge_consumed",
+          "elapsed_ms": 18
+        },
+        {
+          "order": 10,
+          "event": "session_issued",
+          "elapsed_ms": 18
+        }
+      ],
+      "run": 3
+    },
+    {
+      "strategy": "stopin_aware_adversary",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": false,
+      "verification_status": 200,
+      "access_session_issued": true,
+      "protected_html_accessible": true,
+      "protected_api_accessible": true,
+      "resources": [],
+      "deliberately_ignored_resources": 3,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [],
+      "activation_order": [],
+      "verification_decision": "ALLOW",
+      "reason_codes": [
+        "valid_verified_session"
+      ],
+      "server_observed_report_presence": false,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 5,
+          "event": "verification_submitted",
+          "elapsed_ms": 9
+        },
+        {
+          "order": 6,
+          "event": "challenge_consumed",
+          "elapsed_ms": 9
+        },
+        {
+          "order": 7,
+          "event": "session_issued",
+          "elapsed_ms": 9
+        }
+      ],
+      "run": 1
+    },
+    {
+      "strategy": "stopin_aware_adversary",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": false,
+      "verification_status": 200,
+      "access_session_issued": true,
+      "protected_html_accessible": true,
+      "protected_api_accessible": true,
+      "resources": [],
+      "deliberately_ignored_resources": 3,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [],
+      "activation_order": [],
+      "verification_decision": "ALLOW",
+      "reason_codes": [
+        "valid_verified_session"
+      ],
+      "server_observed_report_presence": false,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 5,
+          "event": "verification_submitted",
+          "elapsed_ms": 12
+        },
+        {
+          "order": 6,
+          "event": "challenge_consumed",
+          "elapsed_ms": 12
+        },
+        {
+          "order": 7,
+          "event": "session_issued",
+          "elapsed_ms": 12
+        }
+      ],
+      "run": 2
+    },
+    {
+      "strategy": "stopin_aware_adversary",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": false,
+      "verification_status": 200,
+      "access_session_issued": true,
+      "protected_html_accessible": true,
+      "protected_api_accessible": true,
+      "resources": [],
+      "deliberately_ignored_resources": 3,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [],
+      "activation_order": [],
+      "verification_decision": "ALLOW",
+      "reason_codes": [
+        "valid_verified_session"
+      ],
+      "server_observed_report_presence": false,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 5,
+          "event": "verification_submitted",
+          "elapsed_ms": 11
+        },
+        {
+          "order": 6,
+          "event": "challenge_consumed",
+          "elapsed_ms": 11
+        },
+        {
+          "order": 7,
+          "event": "session_issued",
+          "elapsed_ms": 11
+        }
+      ],
+      "run": 3
+    },
+    {
+      "strategy": "control_keyboard",
+      "control": "keyboard",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": true,
+      "verification_status": 200,
+      "access_session_issued": true,
+      "protected_html_accessible": true,
+      "protected_api_accessible": true,
+      "resources": [],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true,
+        "keyboard_focus": true
+      },
+      "experiments_activated": [],
+      "activation_order": [],
+      "verification_decision": "ALLOW",
+      "reason_codes": [
+        "browser_automation_hint",
+        "valid_verified_session"
+      ],
+      "server_observed_report_presence": true,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 5,
+          "event": "verification_submitted",
+          "elapsed_ms": 8
+        },
+        {
+          "order": 6,
+          "event": "challenge_consumed",
+          "elapsed_ms": 8
+        },
+        {
+          "order": 7,
+          "event": "session_issued",
+          "elapsed_ms": 8
+        }
+      ]
+    },
+    {
+      "strategy": "control_mouse",
+      "control": "mouse",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": true,
+      "verification_status": 200,
+      "access_session_issued": true,
+      "protected_html_accessible": true,
+      "protected_api_accessible": true,
+      "resources": [],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [],
+      "activation_order": [],
+      "verification_decision": "ALLOW",
+      "reason_codes": [
+        "browser_automation_hint",
+        "valid_verified_session"
+      ],
+      "server_observed_report_presence": true,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 5,
+          "event": "verification_submitted",
+          "elapsed_ms": 9
+        },
+        {
+          "order": 6,
+          "event": "challenge_consumed",
+          "elapsed_ms": 9
+        },
+        {
+          "order": 7,
+          "event": "session_issued",
+          "elapsed_ms": 9
+        }
+      ]
+    },
+    {
+      "strategy": "control_slow",
+      "control": "slow",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": true,
+      "verification_status": 200,
+      "access_session_issued": true,
+      "protected_html_accessible": true,
+      "protected_api_accessible": true,
+      "resources": [],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [],
+      "activation_order": [],
+      "verification_decision": "ALLOW",
+      "reason_codes": [
+        "browser_automation_hint",
+        "valid_verified_session"
+      ],
+      "server_observed_report_presence": true,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 5,
+          "event": "verification_submitted",
+          "elapsed_ms": 8
+        },
+        {
+          "order": 6,
+          "event": "challenge_consumed",
+          "elapsed_ms": 8
+        },
+        {
+          "order": 7,
+          "event": "session_issued",
+          "elapsed_ms": 8
+        }
+      ]
+    },
+    {
+      "strategy": "control_repeated_navigation",
+      "control": "repeated_navigation",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": true,
+      "verification_status": 200,
+      "access_session_issued": true,
+      "protected_html_accessible": true,
+      "protected_api_accessible": true,
+      "resources": [],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [],
+      "activation_order": [],
+      "verification_decision": "ALLOW",
+      "reason_codes": [
+        "browser_automation_hint",
+        "valid_verified_session"
+      ],
+      "server_observed_report_presence": true,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 5,
+          "event": "verification_submitted",
+          "elapsed_ms": 11
+        },
+        {
+          "order": 6,
+          "event": "challenge_consumed",
+          "elapsed_ms": 11
+        },
+        {
+          "order": 7,
+          "event": "session_issued",
+          "elapsed_ms": 11
+        }
+      ]
+    },
+    {
+      "strategy": "control_refresh_back",
+      "control": "refresh_back",
+      "initial_html_accessible": false,
+      "initial_api_accessible": false,
+      "browser_report_supplied": true,
+      "verification_status": 200,
+      "access_session_issued": true,
+      "protected_html_accessible": true,
+      "protected_api_accessible": true,
+      "resources": [],
+      "deliberately_ignored_resources": 0,
+      "control_checks": {
+        "one_visible_button": true,
+        "live_status": true
+      },
+      "experiments_activated": [],
+      "activation_order": [],
+      "verification_decision": "ALLOW",
+      "reason_codes": [
+        "browser_automation_hint",
+        "valid_verified_session"
+      ],
+      "server_observed_report_presence": true,
+      "interaction_sequence": [
+        {
+          "order": 1,
+          "event": "challenge_issued",
+          "elapsed_ms": 0
+        },
+        {
+          "order": 2,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "metadata_reference"
+        },
+        {
+          "order": 3,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "resource"
+        },
+        {
+          "order": 4,
+          "event": "experiment_exposed",
+          "elapsed_ms": 0,
+          "family": "protocol_action"
+        },
+        {
+          "order": 5,
+          "event": "verification_submitted",
+          "elapsed_ms": 10
+        },
+        {
+          "order": 6,
+          "event": "challenge_consumed",
+          "elapsed_ms": 10
+        },
+        {
+          "order": 7,
+          "event": "session_issued",
+          "elapsed_ms": 10
+        }
+      ]
+    }
+  ]
+}
