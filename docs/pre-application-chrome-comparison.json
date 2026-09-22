@@ -1,0 +1,633 @@
+{
+  "manual_provenance": {
+    "kind": "operator_report",
+    "confirmation": "all I see LAB-PROTECTED-FIXTURE /private",
+    "browser": "ordinary Chrome as requested; version not independently verified",
+    "identity_is_server_verifiable": false
+  },
+  "automated_browser": {
+    "channel": "chrome",
+    "version": "153.0.8010.48",
+    "headless": true
+  },
+  "comparison_scope": "Same lab process and bootstrap; ordered actions, status and body byte counts. Random IDs, absolute timestamps and global sequence offsets excluded. HTTP/TLS fingerprints not collected. No claim of wire-level equality.",
+  "comparisons": [
+    {
+      "variant": "comment",
+      "manual_run": 1,
+      "playwright_run": 4,
+      "equal_action_trace": true,
+      "manual_trace": [
+        {
+          "event": "issued",
+          "variant": "comment",
+          "lifetime_seconds": 90
+        },
+        {
+          "event": "response",
+          "route": "start",
+          "status": 200,
+          "bytes": 256,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "GET",
+          "route": "script"
+        },
+        {
+          "event": "response",
+          "route": "script",
+          "status": 200,
+          "bytes": 154,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "POST",
+          "route": "complete"
+        },
+        {
+          "event": "authorized"
+        },
+        {
+          "event": "response",
+          "route": "complete",
+          "status": 204,
+          "bytes": 0,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "GET",
+          "route": "private"
+        },
+        {
+          "event": "origin_dispatch",
+          "route": "private"
+        },
+        {
+          "event": "response",
+          "route": "private",
+          "status": 200,
+          "bytes": 30,
+          "protected_bytes": 30
+        }
+      ],
+      "playwright_trace": [
+        {
+          "event": "issued",
+          "variant": "comment",
+          "lifetime_seconds": 90
+        },
+        {
+          "event": "response",
+          "route": "start",
+          "status": 200,
+          "bytes": 256,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "GET",
+          "route": "script"
+        },
+        {
+          "event": "response",
+          "route": "script",
+          "status": 200,
+          "bytes": 154,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "POST",
+          "route": "complete"
+        },
+        {
+          "event": "authorized"
+        },
+        {
+          "event": "response",
+          "route": "complete",
+          "status": 204,
+          "bytes": 0,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "GET",
+          "route": "private"
+        },
+        {
+          "event": "origin_dispatch",
+          "route": "private"
+        },
+        {
+          "event": "response",
+          "route": "private",
+          "status": 200,
+          "bytes": 30,
+          "protected_bytes": 30
+        }
+      ]
+    },
+    {
+      "variant": "inert_manifest",
+      "manual_run": 2,
+      "playwright_run": 5,
+      "equal_action_trace": true,
+      "manual_trace": [
+        {
+          "event": "issued",
+          "variant": "inert_manifest",
+          "lifetime_seconds": 90
+        },
+        {
+          "event": "response",
+          "route": "start",
+          "status": 200,
+          "bytes": 305,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "GET",
+          "route": "script"
+        },
+        {
+          "event": "response",
+          "route": "script",
+          "status": 200,
+          "bytes": 154,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "POST",
+          "route": "complete"
+        },
+        {
+          "event": "authorized"
+        },
+        {
+          "event": "response",
+          "route": "complete",
+          "status": 204,
+          "bytes": 0,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "GET",
+          "route": "private"
+        },
+        {
+          "event": "origin_dispatch",
+          "route": "private"
+        },
+        {
+          "event": "response",
+          "route": "private",
+          "status": 200,
+          "bytes": 30,
+          "protected_bytes": 30
+        }
+      ],
+      "playwright_trace": [
+        {
+          "event": "issued",
+          "variant": "inert_manifest",
+          "lifetime_seconds": 90
+        },
+        {
+          "event": "response",
+          "route": "start",
+          "status": 200,
+          "bytes": 305,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "GET",
+          "route": "script"
+        },
+        {
+          "event": "response",
+          "route": "script",
+          "status": 200,
+          "bytes": 154,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "POST",
+          "route": "complete"
+        },
+        {
+          "event": "authorized"
+        },
+        {
+          "event": "response",
+          "route": "complete",
+          "status": 204,
+          "bytes": 0,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "GET",
+          "route": "private"
+        },
+        {
+          "event": "origin_dispatch",
+          "route": "private"
+        },
+        {
+          "event": "response",
+          "route": "private",
+          "status": 200,
+          "bytes": 30,
+          "protected_bytes": 30
+        }
+      ]
+    },
+    {
+      "variant": "dormant_function",
+      "manual_run": 3,
+      "playwright_run": 6,
+      "equal_action_trace": true,
+      "manual_trace": [
+        {
+          "event": "issued",
+          "variant": "dormant_function",
+          "lifetime_seconds": 90
+        },
+        {
+          "event": "response",
+          "route": "start",
+          "status": 200,
+          "bytes": 224,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "GET",
+          "route": "script"
+        },
+        {
+          "event": "response",
+          "route": "script",
+          "status": 200,
+          "bytes": 255,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "POST",
+          "route": "complete"
+        },
+        {
+          "event": "authorized"
+        },
+        {
+          "event": "response",
+          "route": "complete",
+          "status": 204,
+          "bytes": 0,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "GET",
+          "route": "private"
+        },
+        {
+          "event": "origin_dispatch",
+          "route": "private"
+        },
+        {
+          "event": "response",
+          "route": "private",
+          "status": 200,
+          "bytes": 30,
+          "protected_bytes": 30
+        }
+      ],
+      "playwright_trace": [
+        {
+          "event": "issued",
+          "variant": "dormant_function",
+          "lifetime_seconds": 90
+        },
+        {
+          "event": "response",
+          "route": "start",
+          "status": 200,
+          "bytes": 224,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "GET",
+          "route": "script"
+        },
+        {
+          "event": "response",
+          "route": "script",
+          "status": 200,
+          "bytes": 255,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "POST",
+          "route": "complete"
+        },
+        {
+          "event": "authorized"
+        },
+        {
+          "event": "response",
+          "route": "complete",
+          "status": 204,
+          "bytes": 0,
+          "protected_bytes": 0
+        },
+        {
+          "event": "request",
+          "method": "GET",
+          "route": "private"
+        },
+        {
+          "event": "origin_dispatch",
+          "route": "private"
+        },
+        {
+          "event": "response",
+          "route": "private",
+          "status": 200,
+          "bytes": 30,
+          "protected_bytes": 30
+        }
+      ]
+    }
+  ],
+  "automated_events": [
+    {
+      "order": 39,
+      "at": 575181.710119,
+      "run": 4,
+      "event": "issued",
+      "variant": "comment",
+      "lifetime_seconds": 90
+    },
+    {
+      "order": 40,
+      "at": 575181.710197,
+      "run": 4,
+      "event": "response",
+      "route": "start",
+      "status": 200,
+      "bytes": 256,
+      "protected_bytes": 0
+    },
+    {
+      "order": 41,
+      "at": 575181.722645,
+      "run": 4,
+      "event": "request",
+      "method": "GET",
+      "route": "script"
+    },
+    {
+      "order": 42,
+      "at": 575181.722684,
+      "run": 4,
+      "event": "response",
+      "route": "script",
+      "status": 200,
+      "bytes": 154,
+      "protected_bytes": 0
+    },
+    {
+      "order": 43,
+      "at": 575181.742963,
+      "run": 4,
+      "event": "request",
+      "method": "POST",
+      "route": "complete"
+    },
+    {
+      "order": 44,
+      "at": 575181.742977,
+      "run": 4,
+      "event": "authorized"
+    },
+    {
+      "order": 45,
+      "at": 575181.742987,
+      "run": 4,
+      "event": "response",
+      "route": "complete",
+      "status": 204,
+      "bytes": 0,
+      "protected_bytes": 0
+    },
+    {
+      "order": 46,
+      "at": 575181.753109,
+      "run": 4,
+      "event": "request",
+      "method": "GET",
+      "route": "private"
+    },
+    {
+      "order": 47,
+      "at": 575181.753121,
+      "run": 4,
+      "event": "origin_dispatch",
+      "route": "private"
+    },
+    {
+      "order": 48,
+      "at": 575181.753444,
+      "run": 4,
+      "event": "response",
+      "route": "private",
+      "status": 200,
+      "bytes": 30,
+      "protected_bytes": 30
+    },
+    {
+      "order": 50,
+      "at": 575181.935194,
+      "run": 5,
+      "event": "issued",
+      "variant": "inert_manifest",
+      "lifetime_seconds": 90
+    },
+    {
+      "order": 51,
+      "at": 575181.935285,
+      "run": 5,
+      "event": "response",
+      "route": "start",
+      "status": 200,
+      "bytes": 305,
+      "protected_bytes": 0
+    },
+    {
+      "order": 52,
+      "at": 575181.947006,
+      "run": 5,
+      "event": "request",
+      "method": "GET",
+      "route": "script"
+    },
+    {
+      "order": 53,
+      "at": 575181.947043,
+      "run": 5,
+      "event": "response",
+      "route": "script",
+      "status": 200,
+      "bytes": 154,
+      "protected_bytes": 0
+    },
+    {
+      "order": 54,
+      "at": 575181.962105,
+      "run": 5,
+      "event": "request",
+      "method": "POST",
+      "route": "complete"
+    },
+    {
+      "order": 55,
+      "at": 575181.962124,
+      "run": 5,
+      "event": "authorized"
+    },
+    {
+      "order": 56,
+      "at": 575181.962137,
+      "run": 5,
+      "event": "response",
+      "route": "complete",
+      "status": 204,
+      "bytes": 0,
+      "protected_bytes": 0
+    },
+    {
+      "order": 57,
+      "at": 575181.971309,
+      "run": 5,
+      "event": "request",
+      "method": "GET",
+      "route": "private"
+    },
+    {
+      "order": 58,
+      "at": 575181.971322,
+      "run": 5,
+      "event": "origin_dispatch",
+      "route": "private"
+    },
+    {
+      "order": 59,
+      "at": 575181.971697,
+      "run": 5,
+      "event": "response",
+      "route": "private",
+      "status": 200,
+      "bytes": 30,
+      "protected_bytes": 30
+    },
+    {
+      "order": 61,
+      "at": 575182.140508,
+      "run": 6,
+      "event": "issued",
+      "variant": "dormant_function",
+      "lifetime_seconds": 90
+    },
+    {
+      "order": 62,
+      "at": 575182.14062,
+      "run": 6,
+      "event": "response",
+      "route": "start",
+      "status": 200,
+      "bytes": 224,
+      "protected_bytes": 0
+    },
+    {
+      "order": 63,
+      "at": 575182.151834,
+      "run": 6,
+      "event": "request",
+      "method": "GET",
+      "route": "script"
+    },
+    {
+      "order": 64,
+      "at": 575182.151862,
+      "run": 6,
+      "event": "response",
+      "route": "script",
+      "status": 200,
+      "bytes": 255,
+      "protected_bytes": 0
+    },
+    {
+      "order": 65,
+      "at": 575182.157099,
+      "run": 6,
+      "event": "request",
+      "method": "POST",
+      "route": "complete"
+    },
+    {
+      "order": 66,
+      "at": 575182.15712,
+      "run": 6,
+      "event": "authorized"
+    },
+    {
+      "order": 67,
+      "at": 575182.157137,
+      "run": 6,
+      "event": "response",
+      "route": "complete",
+      "status": 204,
+      "bytes": 0,
+      "protected_bytes": 0
+    },
+    {
+      "order": 68,
+      "at": 575182.165335,
+      "run": 6,
+      "event": "request",
+      "method": "GET",
+      "route": "private"
+    },
+    {
+      "order": 69,
+      "at": 575182.165348,
+      "run": 6,
+      "event": "origin_dispatch",
+      "route": "private"
+    },
+    {
+      "order": 70,
+      "at": 575182.165643,
+      "run": 6,
+      "event": "response",
+      "route": "private",
+      "status": 200,
+      "bytes": 30,
+      "protected_bytes": 30
+    }
+  ]
+}

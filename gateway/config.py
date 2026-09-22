@@ -28,8 +28,11 @@ class Settings:
     challenge_rate_limit: int = 20
     max_body_bytes: int = 1048576
     trust_railway_proxy: bool = False
+    measurement_enabled: bool = False
 
     def validate(self):
+        if self.measurement_enabled and (self.production or self.dev_access_token or self.trust_railway_proxy):
+            raise ValueError("Measurement requires development, no development bypass and no trusted proxy")
         if not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", self.site_id):
             raise ValueError("Site ID must contain 1-64 letters, digits, underscores or hyphens")
         if min(self.rate_limit, self.challenge_rate_limit, self.max_body_bytes) < 1:
@@ -62,6 +65,8 @@ class Settings:
         if not isinstance(previous, list):
             raise ValueError("GATEWAY_TOKEN_PREVIOUS_SECRETS must be a JSON list")
         return cls(
+            measurement_enabled=(os.getenv("GATEWAY_MEASUREMENT_ENABLED", "false").lower() == "true"
+                                 and os.getenv("GATEWAY_ENV", "development") == "development"),
             production=production,
             trust_railway_proxy=os.getenv("GATEWAY_TRUST_RAILWAY_PROXY", "false").lower() == "true",
             redis_url=os.getenv("GATEWAY_REDIS_URL", ""),

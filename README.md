@@ -182,3 +182,12 @@ The origin must independently enforce that same credential. A guarded local Next
 and Python demo origin are included. See [origin setup and deployment
 requirements](docs/origin-security.md). Existing origins must install equivalent
 protection; setting the gateway variable alone does not prevent direct access.
+
+## Milestone 11: manual browser measurement
+
+An explicitly enabled development-only runner at `/__measurement` collects
+sanitized server observations from real manual runs and the existing Playwright
+strategies. See [human vs automation measurement](docs/human-vs-automation-measurement.md)
+for setup, post-run labeling, exports and the 15-run automation pilot. Nine completed operator-confirmed manual Chrome runs are now recorded, with protected
+requests failing with 503; Firefox/mobile remain pending. Passing implementation
+tests does not establish human/automation detection.

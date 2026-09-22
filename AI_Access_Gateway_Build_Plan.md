@@ -1024,6 +1024,12 @@ Once these five tests pass, begin Milestone 2.
 
 ## 23. Immediate Next Step
 
+Research direction correction: Milestone 12 investigates optional exploratory actions
+**before application delivery**. Do not proceed with mouse movement, reaction timing,
+scrolling or behavioral-human classification. The active research result and limits
+are documented in [Pre-Application Agent Trap Research](docs/pre-application-agent-trap.md).
+Production rollout work below remains separate; this experiment changes no production policy.
+
 Milestones 1-7 are complete locally, Milestone 8 gateway hardening is implemented,
 and Milestones 9-10 are implemented and measured as local agent interaction experiments.
 Next: execute CI and verify the Railway staging deployment, Redis behavior,
@@ -1050,7 +1056,64 @@ The nonce challenge is intentionally automatable; hardening does not establish h
 | 8 - Production hardening | Gateway implementation complete; hosted validation and public dashboard authorization pending |
 | 9 - Agent Interaction Challenge | DONE - local experiment; 98 passed, 1 real-Redis test skipped; bypass and false-positive limitations documented |
 | 10 - Adaptive Agent Interaction Experiments | IMPLEMENTED AND MEASURED LOCALLY - 145 passed, 1 real-Redis test skipped; aware-adversary and telemetry-omission bypasses recorded |
+| 11 - Human vs Automation Measurement | Measurement implementation available; 15 automation samples collected. DETECTION RESEARCH INCOMPLETE — 9 completed operator-confirmed manual Chrome samples (protected requests 503); Firefox/mobile pending |
+| 12 - Pre-Application Agent Trap Research | IMPLEMENTED AND MEASURED LOCALLY - 72 strategy runs, 3 manual Chrome runs and 3 matched Playwright Chrome runs; identical ordinary action traces, minimum-protocol and late-exploration bypasses documented; production policy unchanged |
 
 Milestone 4 explicitly documents that automation can solve the current challenge
 and copied valid bearer cookies remain usable. These are current design limitations,
 not evidence of human verification or replay-resistant access cookies.
+
+## Milestone 11 — Human vs Automation Measurement
+
+Development-only, explicitly enabled loopback runner supports repeated manual
+verification runs, post-completion `manual-human` metadata and sanitized JSON
+exports. Server-observed evidence is separate from untrusted client/operator
+claims. The existing five Playwright strategies use the same recorder. No access
+rules, experiments, human-speed thresholds or AI probabilities were added.
+
+See [measurement procedure and analysis](docs/human-vs-automation-measurement.md)
+and [sanitized cohort artifact](docs/human-vs-automation-results.json).
+Implementation tests validate measurement plumbing only. Nine completed manual Chrome
+samples were confirmed by the operator; protected content requests failed with 503.
+The corrected batch and descriptive overlap analysis are linked from the measurement
+guide. Matched end-to-end runs and Firefox/mobile cohorts remain pending; detection
+research is not complete.
+Validation: complete suite 154 passed, 1 real-Redis integration test skipped
+(`TEST_REDIS_URL` not configured).
+
+### Milestone 11 successful manual cohort update
+
+Three distinct completed manual Chrome runs now have post-run human labels with
+operator confirmation provenance, successful verification, and protected page/API
+HTTP 200 responses. See `docs/human-vs-automation-successful-comparison.json`.
+Original exports and prior origin-failure observations are preserved separately.
+Timing, experiment non-activation and session behavior overlap automation.
+Firefox/mobile and broader matched sampling remain pending; detection research
+is still incomplete.
+
+## Milestone 12 — Pre-Application Agent Trap Research
+
+Research question: can an autonomous explorer interpreting a StopIn-only bootstrap
+be induced to perform an observable action unnecessary for ordinary browser execution,
+before the protected application is delivered or executed?
+
+Implemented a separate loopback lab gateway with three randomized, session-bound,
+90-second bootstrap variants: comment recovery index, inert JSON index, dormant
+JavaScript helper. The ordinary bootstrap executes automatically without user input.
+Only an explicit lab authorization permits an origin request; HTML, API, application
+data and assets remain unavailable before that boundary. No production imports,
+policy changes, behavioral classification, webdriver checks or fingerprint rules.
+
+Observed results: all 27 early explorers following optional information were blocked
+with zero origin calls/content; nine non-completing HTML parsers also received none.
+Normal Playwright, the aware adversary and a no-JavaScript minimum-protocol client
+each obtained the protected app in 9/9 runs. Nine late explorers received HTML before
+trap activation. Fresh-session retry is another tested bypass. Three operator-confirmed
+manual Chrome runs matched three Playwright Chrome action traces across all variants.
+The instrument cannot distinguish identical browser execution or invisible analysis.
+
+Full validation: 166 Python tests passed, one real-Redis integration skipped because
+`TEST_REDIS_URL` is unset; all browser and real Next.js tests passed. Dashboard tests:
+3 passed. See [methods, observations, limitations and artifacts](docs/pre-application-agent-trap.md).
+These controlled scripted strategies establish conditional optional-action detection,
+not reliable induction of arbitrary agents or human-vs-automation classification.

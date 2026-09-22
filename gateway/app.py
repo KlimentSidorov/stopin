@@ -25,6 +25,7 @@ from gateway.detection.store import EvidenceStore
 from gateway.distributed import RedisChallenges, RedisSessions, RedisEvidence
 from gateway.hardening import BoundaryMiddleware, RequestControls
 from gateway.logging.events import record_decision
+from gateway.measurement import install as install_measurement
 from gateway.origin.protection import validate_secret
 from gateway.policies.evaluator import Decision
 from gateway.proxy.origin_proxy import proxy_request
@@ -79,8 +80,11 @@ def create_app(settings: Settings | None = None,
     if settings.allowed_hosts:
         app.add_middleware(TrustedHostMiddleware, allowed_hosts=list(settings.allowed_hosts))
     dashboard = DashboardStore(settings.dashboard_db) if settings.dashboard_db else None
+    measurement = install_measurement(app, settings)
 
     def record_event(**event):
+        if measurement:
+            measurement.evidence(event)
         record_decision(**event)
         if dashboard:
             dashboard.record(**event)
@@ -192,6 +196,8 @@ def create_app(settings: Settings | None = None,
 
     @app.post("/challenge/verify")
     def verify_challenge_endpoint(request: Request, body: ChallengeSubmission):
+        if measurement:
+            measurement.event("verification_submission", telemetry_present=body.browser is not None)
         bound_session = request.cookies.get("gateway_challenge_session", "")
         if secrets.compare_digest(bound_session.encode(), body.session_id.encode()):
             app.state.evidence_store.lifecycle(bound_session, "verification_submitted")
@@ -202,10 +208,12 @@ def create_app(settings: Settings | None = None,
             interaction = app.state.evidence_store.lifecycle(bound_session, "verification_rejected")
             record_event(request_id=str(uuid4()), site_id=settings.site_id,
                             method="POST", path="/challenge/verify", decision="BLOCK",
-                            reasons=["invalid_challenge"], signals=interaction)
+                            reasons=["invalid_challenge"], session_id=bound_session, signals=interaction)
             return Response(status_code=403, headers=PRIVATE_HEADERS)
         app.state.evidence_store.report(bound_session, body.browser.model_dump() if body.browser else None)
-        app.state.evidence_store.lifecycle(bound_session, "challenge_consumed")
+        consumed = app.state.evidence_store.lifecycle(bound_session, "challenge_consumed")
+        if measurement:
+            measurement.evidence({"session_id": bound_session, "signals": consumed, "decision": "OBSERVE"})
         signals = collect_signals(request, settings, app.state.session_store, app.state.evidence_store)
         # A consumed, valid challenge establishes eligibility; client claims do not.
         signals.session.update(valid=True, invalid_token=False, development=False, id=bound_session)

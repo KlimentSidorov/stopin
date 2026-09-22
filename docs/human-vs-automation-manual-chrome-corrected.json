@@ -1,0 +1,3424 @@
+{
+  "schema_version": 1,
+  "exported_at": "2026-09-21T09:33:57.476187+00:00",
+  "verification_duration_distribution_ms": {
+    "human": {
+      "n": 9,
+      "min": 5,
+      "median": 8,
+      "max": 10,
+      "values": [
+        10,
+        5,
+        9,
+        8,
+        8,
+        6,
+        8,
+        8,
+        8
+      ]
+    },
+    "automation": {
+      "n": 0,
+      "min": null,
+      "median": null,
+      "max": null,
+      "values": []
+    }
+  },
+  "research_status": "samples collected; detection research incomplete",
+  "cohorts": [
+    {
+      "cohort": "manual_chrome",
+      "sample_size": 9,
+      "labeled_manual_samples": 9,
+      "status": "collected"
+    },
+    {
+      "cohort": "manual_firefox",
+      "sample_size": 0,
+      "labeled_manual_samples": 0,
+      "status": "pending"
+    },
+    {
+      "cohort": "manual_mobile",
+      "sample_size": 0,
+      "labeled_manual_samples": 0,
+      "status": "pending"
+    },
+    {
+      "cohort": "normal_visible_flow",
+      "sample_size": 0,
+      "labeled_manual_samples": 0,
+      "status": "pending"
+    },
+    {
+      "cohort": "resource_explorer",
+      "sample_size": 0,
+      "labeled_manual_samples": 0,
+      "status": "pending"
+    },
+    {
+      "cohort": "protocol_explorer",
+      "sample_size": 0,
+      "labeled_manual_samples": 0,
+      "status": "pending"
+    },
+    {
+      "cohort": "telemetry_omitting_explorer",
+      "sample_size": 0,
+      "labeled_manual_samples": 0,
+      "status": "pending"
+    },
+    {
+      "cohort": "stopin_aware_adversary",
+      "sample_size": 0,
+      "labeled_manual_samples": 0,
+      "status": "pending"
+    }
+  ],
+  "features": {
+    "verification_duration_ms": {
+      "description": "Server challenge issuance to submission; excludes time before issuance.",
+      "human_observations": [
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            10
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            5
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            9
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            8
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            8
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            6
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            8
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            8
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            8
+          ]
+        }
+      ],
+      "automation_observations": [],
+      "overlap": "requires analysis; no classifier inferred",
+      "sample_size": {
+        "human_runs": 9,
+        "automation_runs": 0
+      },
+      "possible_false_positive_concerns": "Network delay, device load, accessibility and retries affect duration."
+    },
+    "request_event_ordering": {
+      "description": "Ordered server arrivals and lifecycle events, linked by request ordinal.",
+      "human_observations": [
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "request_started",
+            "challenge_issued",
+            "experiment_exposed",
+            "experiment_exposed",
+            "experiment_exposed",
+            "request_completed",
+            "request_started",
+            "verification_submission",
+            "verification_submitted",
+            "challenge_consumed",
+            "session_issued",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "protected_api_requested",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "protected_page_requested",
+            "access_decision",
+            "request_completed"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "request_started",
+            "challenge_issued",
+            "experiment_exposed",
+            "experiment_exposed",
+            "experiment_exposed",
+            "request_completed",
+            "request_started",
+            "verification_submission",
+            "verification_submitted",
+            "challenge_consumed",
+            "session_issued",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "protected_page_requested",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "protected_page_requested",
+            "access_decision",
+            "request_completed"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "request_started",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "request_completed",
+            "request_started",
+            "challenge_issued",
+            "experiment_exposed",
+            "experiment_exposed",
+            "experiment_exposed",
+            "request_completed",
+            "request_started",
+            "verification_submission",
+            "verification_submitted",
+            "challenge_consumed",
+            "session_issued",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "protected_page_requested",
+            "access_decision",
+            "request_completed"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "request_started",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "request_completed",
+            "request_started",
+            "challenge_issued",
+            "experiment_exposed",
+            "experiment_exposed",
+            "experiment_exposed",
+            "request_completed",
+            "request_started",
+            "verification_submission",
+            "verification_submitted",
+            "challenge_consumed",
+            "session_issued",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "protected_page_requested",
+            "access_decision",
+            "request_completed"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "request_started",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "request_completed",
+            "request_started",
+            "challenge_issued",
+            "experiment_exposed",
+            "experiment_exposed",
+            "experiment_exposed",
+            "request_completed",
+            "request_started",
+            "verification_submission",
+            "verification_submitted",
+            "challenge_consumed",
+            "session_issued",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "protected_page_requested",
+            "access_decision",
+            "request_completed"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "request_started",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "request_completed",
+            "request_started",
+            "challenge_issued",
+            "experiment_exposed",
+            "experiment_exposed",
+            "experiment_exposed",
+            "request_completed",
+            "request_started",
+            "verification_submission",
+            "verification_submitted",
+            "challenge_consumed",
+            "session_issued",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "protected_page_requested",
+            "access_decision",
+            "request_completed"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "request_started",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "request_completed",
+            "request_started",
+            "challenge_issued",
+            "experiment_exposed",
+            "experiment_exposed",
+            "experiment_exposed",
+            "request_completed",
+            "request_started",
+            "verification_submission",
+            "verification_submitted",
+            "challenge_consumed",
+            "session_issued",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "protected_page_requested",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "protected_page_requested",
+            "access_decision",
+            "request_completed"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "request_started",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "request_completed",
+            "request_started",
+            "challenge_issued",
+            "experiment_exposed",
+            "experiment_exposed",
+            "experiment_exposed",
+            "request_completed",
+            "request_started",
+            "verification_submission",
+            "verification_submitted",
+            "challenge_consumed",
+            "session_issued",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "protected_page_requested",
+            "access_decision",
+            "request_completed"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "request_started",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "request_completed",
+            "request_started",
+            "challenge_issued",
+            "experiment_exposed",
+            "experiment_exposed",
+            "experiment_exposed",
+            "request_completed",
+            "request_started",
+            "verification_submission",
+            "verification_submitted",
+            "challenge_consumed",
+            "session_issued",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "protected_page_requested",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "protected_api_requested",
+            "access_decision",
+            "request_completed",
+            "request_started",
+            "protected_api_requested",
+            "access_decision",
+            "request_completed"
+          ]
+        }
+      ],
+      "automation_observations": [],
+      "overlap": "requires analysis; no classifier inferred",
+      "sample_size": {
+        "human_runs": 9,
+        "automation_runs": 0
+      },
+      "possible_false_positive_concerns": "Concurrent requests can complete out of arrival order."
+    },
+    "navigation_transitions": {
+      "description": "Route categories observed at the server.",
+      "human_observations": [
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "/challenge",
+            "/challenge/verify",
+            "protected_api",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "/challenge",
+            "/challenge/verify",
+            "protected_page",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "protected_page",
+            "/challenge/client.js",
+            "/challenge",
+            "/challenge/verify",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "protected_page",
+            "/challenge/client.js",
+            "/challenge",
+            "/challenge/verify",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "protected_page",
+            "/challenge/client.js",
+            "/challenge",
+            "/challenge/verify",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "protected_page",
+            "/challenge/client.js",
+            "/challenge",
+            "/challenge/verify",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "protected_page",
+            "/challenge/client.js",
+            "/challenge",
+            "/challenge/verify",
+            "protected_page",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "protected_page",
+            "/challenge/client.js",
+            "/challenge",
+            "/challenge/verify",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "protected_page",
+            "/challenge/client.js",
+            "/challenge",
+            "/challenge/verify",
+            "protected_page",
+            "protected_api",
+            "protected_api"
+          ]
+        }
+      ],
+      "automation_observations": [],
+      "overlap": "requires analysis; no classifier inferred",
+      "sample_size": {
+        "human_runs": 9,
+        "automation_runs": 0
+      },
+      "possible_false_positive_concerns": "Prefetch, caches and back/forward cache obscure browser navigation."
+    },
+    "challenge_retries": {
+      "description": "Additional challenge issuances and submission attempts.",
+      "human_observations": [
+        {
+          "cohort": "manual_chrome",
+          "values": {
+            "issuances": 1,
+            "submissions": 1
+          }
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": {
+            "issuances": 1,
+            "submissions": 1
+          }
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": {
+            "issuances": 1,
+            "submissions": 1
+          }
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": {
+            "issuances": 1,
+            "submissions": 1
+          }
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": {
+            "issuances": 1,
+            "submissions": 1
+          }
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": {
+            "issuances": 1,
+            "submissions": 1
+          }
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": {
+            "issuances": 1,
+            "submissions": 1
+          }
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": {
+            "issuances": 1,
+            "submissions": 1
+          }
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": {
+            "issuances": 1,
+            "submissions": 1
+          }
+        }
+      ],
+      "automation_observations": [],
+      "overlap": "requires analysis; no classifier inferred",
+      "sample_size": {
+        "human_runs": 9,
+        "automation_runs": 0
+      },
+      "possible_false_positive_concerns": "Connectivity failures and expired challenges affect legitimate users."
+    },
+    "refresh_behavior": {
+      "description": "Repeated route categories; refresh cannot be identified conclusively.",
+      "human_observations": [
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "/challenge",
+            "/challenge/verify",
+            "protected_api",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "/challenge",
+            "/challenge/verify",
+            "protected_page",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "protected_page",
+            "/challenge/client.js",
+            "/challenge",
+            "/challenge/verify",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "protected_page",
+            "/challenge/client.js",
+            "/challenge",
+            "/challenge/verify",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "protected_page",
+            "/challenge/client.js",
+            "/challenge",
+            "/challenge/verify",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "protected_page",
+            "/challenge/client.js",
+            "/challenge",
+            "/challenge/verify",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "protected_page",
+            "/challenge/client.js",
+            "/challenge",
+            "/challenge/verify",
+            "protected_page",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "protected_page",
+            "/challenge/client.js",
+            "/challenge",
+            "/challenge/verify",
+            "protected_page"
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            "protected_page",
+            "/challenge/client.js",
+            "/challenge",
+            "/challenge/verify",
+            "protected_page",
+            "protected_api",
+            "protected_api"
+          ]
+        }
+      ],
+      "automation_observations": [],
+      "overlap": "requires analysis; no classifier inferred",
+      "sample_size": {
+        "human_runs": 9,
+        "automation_runs": 0
+      },
+      "possible_false_positive_concerns": "Reload, repeated fetch and new navigation can look identical."
+    },
+    "request_bursts": {
+      "description": "Interarrival intervals without a classification threshold.",
+      "human_observations": [
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            11.649,
+            20.399,
+            7784.905
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            6.748,
+            16.408,
+            10392.821
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            25.421,
+            2912.797,
+            10.106,
+            19.427
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            36.72,
+            1447.512,
+            9.509,
+            16.455
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            28.198,
+            1316.429,
+            9.262,
+            15.871
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            24.018,
+            1042.249,
+            7.916,
+            17.156
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            22.55,
+            1115.152,
+            8.348,
+            19.825,
+            1995.321
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            34.966,
+            1148.998,
+            8.581,
+            15.43
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            36.509,
+            1237.834,
+            9.694,
+            15.668,
+            15241.552,
+            1795.673
+          ]
+        }
+      ],
+      "automation_observations": [],
+      "overlap": "requires analysis; no classifier inferred",
+      "sample_size": {
+        "human_runs": 9,
+        "automation_runs": 0
+      },
+      "possible_false_positive_concerns": "Page assets, parallel tabs and network batching create bursts."
+    },
+    "experiment_interaction": {
+      "description": "Existing experiment exposure and activation families.",
+      "human_observations": [
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "event": "experiment_exposed",
+              "family": "protocol_action"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "resource"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "metadata_reference"
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "event": "experiment_exposed",
+              "family": "resource"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "metadata_reference"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "protocol_action"
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "event": "experiment_exposed",
+              "family": "metadata_reference"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "resource"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "protocol_action"
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "event": "experiment_exposed",
+              "family": "resource"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "protocol_action"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "metadata_reference"
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "event": "experiment_exposed",
+              "family": "resource"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "protocol_action"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "metadata_reference"
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "event": "experiment_exposed",
+              "family": "resource"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "metadata_reference"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "protocol_action"
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "event": "experiment_exposed",
+              "family": "protocol_action"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "resource"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "metadata_reference"
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "event": "experiment_exposed",
+              "family": "protocol_action"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "resource"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "metadata_reference"
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "event": "experiment_exposed",
+              "family": "metadata_reference"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "resource"
+            },
+            {
+              "event": "experiment_exposed",
+              "family": "protocol_action"
+            }
+          ]
+        }
+      ],
+      "automation_observations": [],
+      "overlap": "requires analysis; no classifier inferred",
+      "sample_size": {
+        "human_runs": 9,
+        "automation_runs": 0
+      },
+      "possible_false_positive_concerns": "Tools/extensions may follow resources; informed automation may ignore them."
+    },
+    "session_continuity": {
+      "description": "Existing server validation and continuity observations.",
+      "human_observations": [
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "session_valid": true,
+              "session_continuity": true
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "session_valid": true,
+              "session_continuity": true
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "session_valid": false,
+              "session_continuity": false
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "session_valid": false,
+              "session_continuity": false
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "session_valid": false,
+              "session_continuity": false
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "session_valid": false,
+              "session_continuity": false
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "session_valid": false,
+              "session_continuity": false
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "session_valid": false,
+              "session_continuity": false
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            }
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            {
+              "session_valid": false,
+              "session_continuity": false
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            },
+            {
+              "session_valid": true,
+              "session_continuity": true
+            }
+          ]
+        }
+      ],
+      "automation_observations": [],
+      "overlap": "requires analysis; no classifier inferred",
+      "sample_size": {
+        "human_runs": 9,
+        "automation_runs": 0
+      },
+      "possible_false_positive_concerns": "Cookie restrictions, expiry and fresh contexts interrupt continuity."
+    },
+    "optional_telemetry": {
+      "description": "Presence of browser field on parsed verification submissions.",
+      "human_observations": [
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            true
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            true
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            true
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            true
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            true
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            true
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            true
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            true
+          ]
+        },
+        {
+          "cohort": "manual_chrome",
+          "values": [
+            true
+          ]
+        }
+      ],
+      "automation_observations": [],
+      "overlap": "requires analysis; no classifier inferred",
+      "sample_size": {
+        "human_runs": 9,
+        "automation_runs": 0
+      },
+      "possible_false_positive_concerns": "Script blocking and privacy tools can omit telemetry; claims can be spoofed."
+    }
+  },
+  "runs": [
+    {
+      "cohort": "manual_chrome",
+      "completed": true,
+      "label": "manual-human",
+      "SERVER_OBSERVED": {
+        "events": [
+          {
+            "order": 1,
+            "request": 1,
+            "event": "request_started",
+            "elapsed_ms": 19356.368,
+            "route": "/challenge",
+            "method": "POST"
+          },
+          {
+            "order": 2,
+            "request": 1,
+            "event": "challenge_issued",
+            "elapsed_ms": 19361.059,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": null
+          },
+          {
+            "order": 3,
+            "request": 1,
+            "event": "experiment_exposed",
+            "elapsed_ms": 19361.087,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "protocol_action"
+          },
+          {
+            "order": 4,
+            "request": 1,
+            "event": "experiment_exposed",
+            "elapsed_ms": 19361.1,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "resource"
+          },
+          {
+            "order": 5,
+            "request": 1,
+            "event": "experiment_exposed",
+            "elapsed_ms": 19361.112,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "metadata_reference"
+          },
+          {
+            "order": 6,
+            "request": 1,
+            "event": "request_completed",
+            "elapsed_ms": 19362.344,
+            "status": 200,
+            "duration_ms": 5.927
+          },
+          {
+            "order": 7,
+            "request": 2,
+            "event": "request_started",
+            "elapsed_ms": 19368.017,
+            "route": "/challenge/verify",
+            "method": "POST"
+          },
+          {
+            "order": 8,
+            "request": 2,
+            "event": "verification_submission",
+            "elapsed_ms": 19371.376,
+            "telemetry_present": true
+          },
+          {
+            "order": 9,
+            "request": 2,
+            "event": "verification_submitted",
+            "elapsed_ms": 19371.648,
+            "session": 1,
+            "challenge_elapsed_ms": 10,
+            "family": null
+          },
+          {
+            "order": 10,
+            "request": 2,
+            "event": "challenge_consumed",
+            "elapsed_ms": 19371.664,
+            "session": 1,
+            "challenge_elapsed_ms": 10,
+            "family": null
+          },
+          {
+            "order": 11,
+            "request": 2,
+            "event": "session_issued",
+            "elapsed_ms": 19372.04,
+            "session": 1,
+            "challenge_elapsed_ms": 11,
+            "family": null
+          },
+          {
+            "order": 12,
+            "request": 2,
+            "event": "access_decision",
+            "elapsed_ms": 19372.058,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 13,
+            "request": 2,
+            "event": "request_completed",
+            "elapsed_ms": 19373.792,
+            "status": 200,
+            "duration_ms": 5.727
+          },
+          {
+            "order": 14,
+            "request": 3,
+            "event": "request_started",
+            "elapsed_ms": 19388.416,
+            "route": "protected_api",
+            "method": "GET"
+          },
+          {
+            "order": 15,
+            "request": 3,
+            "event": "protected_api_requested",
+            "elapsed_ms": 19392.685,
+            "session": 1,
+            "challenge_elapsed_ms": 31,
+            "family": null
+          },
+          {
+            "order": 16,
+            "request": 3,
+            "event": "access_decision",
+            "elapsed_ms": 19392.704,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 17,
+            "request": 3,
+            "event": "request_completed",
+            "elapsed_ms": 19393.748,
+            "status": 503,
+            "duration_ms": 5.291
+          },
+          {
+            "order": 18,
+            "request": 4,
+            "event": "request_started",
+            "elapsed_ms": 27173.321,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 19,
+            "request": 4,
+            "event": "protected_page_requested",
+            "elapsed_ms": 27177.438,
+            "session": 1,
+            "challenge_elapsed_ms": 7816,
+            "family": null
+          },
+          {
+            "order": 20,
+            "request": 4,
+            "event": "access_decision",
+            "elapsed_ms": 27177.453,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 21,
+            "request": 4,
+            "event": "request_completed",
+            "elapsed_ms": 27178.075,
+            "status": 503,
+            "duration_ms": 4.718
+          }
+        ],
+        "request_count": 4,
+        "truncated": false
+      },
+      "CLIENT_REPORTED_UNTRUSTED": {
+        "values_retained": false
+      },
+      "metadata_trust": "operator supplied; not verified identity",
+      "provenance": {
+        "source_run": 1,
+        "original_cohort": "manual_chrome",
+        "original_label": null,
+        "correction_basis": "Operator confirmed in conversation that every run was manually operated in Chrome; dropdown changed between runs."
+      }
+    },
+    {
+      "cohort": "manual_chrome",
+      "completed": false,
+      "label": null,
+      "SERVER_OBSERVED": {
+        "events": [],
+        "request_count": 0,
+        "truncated": false
+      },
+      "CLIENT_REPORTED_UNTRUSTED": {
+        "values_retained": false
+      },
+      "metadata_trust": "operator supplied; not verified identity",
+      "provenance": {
+        "source_run": 2,
+        "original_cohort": "manual_chrome",
+        "original_label": null,
+        "correction_basis": "Operator confirmed in conversation that every run was manually operated in Chrome; dropdown changed between runs."
+      }
+    },
+    {
+      "cohort": "manual_chrome",
+      "completed": false,
+      "label": null,
+      "SERVER_OBSERVED": {
+        "events": [],
+        "request_count": 0,
+        "truncated": false
+      },
+      "CLIENT_REPORTED_UNTRUSTED": {
+        "values_retained": false
+      },
+      "metadata_trust": "operator supplied; not verified identity",
+      "provenance": {
+        "source_run": 3,
+        "original_cohort": "manual_mobile",
+        "original_label": null,
+        "correction_basis": "Operator confirmed in conversation that every run was manually operated in Chrome; dropdown changed between runs."
+      }
+    },
+    {
+      "cohort": "manual_chrome",
+      "completed": true,
+      "label": "manual-human",
+      "SERVER_OBSERVED": {
+        "events": [
+          {
+            "order": 1,
+            "request": 1,
+            "event": "request_started",
+            "elapsed_ms": 89010.527,
+            "route": "/challenge",
+            "method": "POST"
+          },
+          {
+            "order": 2,
+            "request": 1,
+            "event": "challenge_issued",
+            "elapsed_ms": 89012.637,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": null
+          },
+          {
+            "order": 3,
+            "request": 1,
+            "event": "experiment_exposed",
+            "elapsed_ms": 89012.651,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "resource"
+          },
+          {
+            "order": 4,
+            "request": 1,
+            "event": "experiment_exposed",
+            "elapsed_ms": 89012.658,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "metadata_reference"
+          },
+          {
+            "order": 5,
+            "request": 1,
+            "event": "experiment_exposed",
+            "elapsed_ms": 89012.664,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "protocol_action"
+          },
+          {
+            "order": 6,
+            "request": 1,
+            "event": "request_completed",
+            "elapsed_ms": 89013.607,
+            "status": 200,
+            "duration_ms": 3.041
+          },
+          {
+            "order": 7,
+            "request": 2,
+            "event": "request_started",
+            "elapsed_ms": 89017.275,
+            "route": "/challenge/verify",
+            "method": "POST"
+          },
+          {
+            "order": 8,
+            "request": 2,
+            "event": "verification_submission",
+            "elapsed_ms": 89018.189,
+            "telemetry_present": true
+          },
+          {
+            "order": 9,
+            "request": 2,
+            "event": "verification_submitted",
+            "elapsed_ms": 89018.296,
+            "session": 1,
+            "challenge_elapsed_ms": 5,
+            "family": null
+          },
+          {
+            "order": 10,
+            "request": 2,
+            "event": "challenge_consumed",
+            "elapsed_ms": 89018.304,
+            "session": 1,
+            "challenge_elapsed_ms": 5,
+            "family": null
+          },
+          {
+            "order": 11,
+            "request": 2,
+            "event": "session_issued",
+            "elapsed_ms": 89018.495,
+            "session": 1,
+            "challenge_elapsed_ms": 5,
+            "family": null
+          },
+          {
+            "order": 12,
+            "request": 2,
+            "event": "access_decision",
+            "elapsed_ms": 89018.504,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 13,
+            "request": 2,
+            "event": "request_completed",
+            "elapsed_ms": 89019.495,
+            "status": 200,
+            "duration_ms": 2.196
+          },
+          {
+            "order": 14,
+            "request": 3,
+            "event": "request_started",
+            "elapsed_ms": 89033.683,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 15,
+            "request": 3,
+            "event": "protected_page_requested",
+            "elapsed_ms": 89036.974,
+            "session": 1,
+            "challenge_elapsed_ms": 23,
+            "family": null
+          },
+          {
+            "order": 16,
+            "request": 3,
+            "event": "access_decision",
+            "elapsed_ms": 89037.005,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 17,
+            "request": 3,
+            "event": "request_completed",
+            "elapsed_ms": 89040.988,
+            "status": 503,
+            "duration_ms": 7.243
+          },
+          {
+            "order": 18,
+            "request": 4,
+            "event": "request_started",
+            "elapsed_ms": 99426.504,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 19,
+            "request": 4,
+            "event": "protected_page_requested",
+            "elapsed_ms": 99430.347,
+            "session": 1,
+            "challenge_elapsed_ms": 10416,
+            "family": null
+          },
+          {
+            "order": 20,
+            "request": 4,
+            "event": "access_decision",
+            "elapsed_ms": 99430.373,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 21,
+            "request": 4,
+            "event": "request_completed",
+            "elapsed_ms": 99431.399,
+            "status": 503,
+            "duration_ms": 4.85
+          }
+        ],
+        "request_count": 4,
+        "truncated": false
+      },
+      "CLIENT_REPORTED_UNTRUSTED": {
+        "values_retained": false
+      },
+      "metadata_trust": "operator supplied; not verified identity",
+      "provenance": {
+        "source_run": 4,
+        "original_cohort": "resource_explorer",
+        "original_label": null,
+        "correction_basis": "Operator confirmed in conversation that every run was manually operated in Chrome; dropdown changed between runs."
+      }
+    },
+    {
+      "cohort": "manual_chrome",
+      "completed": true,
+      "label": "manual-human",
+      "SERVER_OBSERVED": {
+        "events": [
+          {
+            "order": 1,
+            "request": 1,
+            "event": "request_started",
+            "elapsed_ms": 3776.66,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 2,
+            "request": 1,
+            "event": "access_decision",
+            "elapsed_ms": 3778.888,
+            "decision": "CHALLENGE",
+            "session_valid": false,
+            "session_continuity": false
+          },
+          {
+            "order": 3,
+            "request": 1,
+            "event": "request_completed",
+            "elapsed_ms": 3780.149,
+            "status": 200,
+            "duration_ms": 3.441
+          },
+          {
+            "order": 4,
+            "request": 2,
+            "event": "request_started",
+            "elapsed_ms": 3802.081,
+            "route": "/challenge/client.js",
+            "method": "GET"
+          },
+          {
+            "order": 5,
+            "request": 2,
+            "event": "request_completed",
+            "elapsed_ms": 3803.615,
+            "status": 200,
+            "duration_ms": 1.488
+          },
+          {
+            "order": 6,
+            "request": 3,
+            "event": "request_started",
+            "elapsed_ms": 6714.878,
+            "route": "/challenge",
+            "method": "POST"
+          },
+          {
+            "order": 7,
+            "request": 3,
+            "event": "challenge_issued",
+            "elapsed_ms": 6717.7,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": null
+          },
+          {
+            "order": 8,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 6717.722,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "metadata_reference"
+          },
+          {
+            "order": 9,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 6717.734,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "resource"
+          },
+          {
+            "order": 10,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 6717.744,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "protocol_action"
+          },
+          {
+            "order": 11,
+            "request": 3,
+            "event": "request_completed",
+            "elapsed_ms": 6719.069,
+            "status": 200,
+            "duration_ms": 4.144
+          },
+          {
+            "order": 12,
+            "request": 4,
+            "event": "request_started",
+            "elapsed_ms": 6724.984,
+            "route": "/challenge/verify",
+            "method": "POST"
+          },
+          {
+            "order": 13,
+            "request": 4,
+            "event": "verification_submission",
+            "elapsed_ms": 6727.275,
+            "telemetry_present": true
+          },
+          {
+            "order": 14,
+            "request": 4,
+            "event": "verification_submitted",
+            "elapsed_ms": 6727.456,
+            "session": 1,
+            "challenge_elapsed_ms": 9,
+            "family": null
+          },
+          {
+            "order": 15,
+            "request": 4,
+            "event": "challenge_consumed",
+            "elapsed_ms": 6727.472,
+            "session": 1,
+            "challenge_elapsed_ms": 10,
+            "family": null
+          },
+          {
+            "order": 16,
+            "request": 4,
+            "event": "session_issued",
+            "elapsed_ms": 6727.883,
+            "session": 1,
+            "challenge_elapsed_ms": 10,
+            "family": null
+          },
+          {
+            "order": 17,
+            "request": 4,
+            "event": "access_decision",
+            "elapsed_ms": 6727.904,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 18,
+            "request": 4,
+            "event": "request_completed",
+            "elapsed_ms": 6730.432,
+            "status": 200,
+            "duration_ms": 5.4
+          },
+          {
+            "order": 19,
+            "request": 5,
+            "event": "request_started",
+            "elapsed_ms": 6744.411,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 20,
+            "request": 5,
+            "event": "protected_page_requested",
+            "elapsed_ms": 6747.884,
+            "session": 1,
+            "challenge_elapsed_ms": 29,
+            "family": null
+          },
+          {
+            "order": 21,
+            "request": 5,
+            "event": "access_decision",
+            "elapsed_ms": 6747.901,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 22,
+            "request": 5,
+            "event": "request_completed",
+            "elapsed_ms": 6748.494,
+            "status": 503,
+            "duration_ms": 4.042
+          }
+        ],
+        "request_count": 5,
+        "truncated": false
+      },
+      "CLIENT_REPORTED_UNTRUSTED": {
+        "values_retained": false
+      },
+      "metadata_trust": "operator supplied; not verified identity",
+      "provenance": {
+        "source_run": 5,
+        "original_cohort": "manual_chrome",
+        "original_label": null,
+        "correction_basis": "Operator confirmed in conversation that every run was manually operated in Chrome; dropdown changed between runs."
+      }
+    },
+    {
+      "cohort": "manual_chrome",
+      "completed": true,
+      "label": "manual-human",
+      "SERVER_OBSERVED": {
+        "events": [
+          {
+            "order": 1,
+            "request": 1,
+            "event": "request_started",
+            "elapsed_ms": 4196.894,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 2,
+            "request": 1,
+            "event": "access_decision",
+            "elapsed_ms": 4200.044,
+            "decision": "CHALLENGE",
+            "session_valid": false,
+            "session_continuity": false
+          },
+          {
+            "order": 3,
+            "request": 1,
+            "event": "request_completed",
+            "elapsed_ms": 4201.35,
+            "status": 200,
+            "duration_ms": 4.405
+          },
+          {
+            "order": 4,
+            "request": 2,
+            "event": "request_started",
+            "elapsed_ms": 4233.614,
+            "route": "/challenge/client.js",
+            "method": "GET"
+          },
+          {
+            "order": 5,
+            "request": 2,
+            "event": "request_completed",
+            "elapsed_ms": 4235.698,
+            "status": 200,
+            "duration_ms": 1.997
+          },
+          {
+            "order": 6,
+            "request": 3,
+            "event": "request_started",
+            "elapsed_ms": 5681.126,
+            "route": "/challenge",
+            "method": "POST"
+          },
+          {
+            "order": 7,
+            "request": 3,
+            "event": "challenge_issued",
+            "elapsed_ms": 5684.023,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": null
+          },
+          {
+            "order": 8,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 5684.048,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "resource"
+          },
+          {
+            "order": 9,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 5684.058,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "protocol_action"
+          },
+          {
+            "order": 10,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 5684.067,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "metadata_reference"
+          },
+          {
+            "order": 11,
+            "request": 3,
+            "event": "request_completed",
+            "elapsed_ms": 5685.428,
+            "status": 200,
+            "duration_ms": 4.256
+          },
+          {
+            "order": 12,
+            "request": 4,
+            "event": "request_started",
+            "elapsed_ms": 5690.635,
+            "route": "/challenge/verify",
+            "method": "POST"
+          },
+          {
+            "order": 13,
+            "request": 4,
+            "event": "verification_submission",
+            "elapsed_ms": 5691.843,
+            "telemetry_present": true
+          },
+          {
+            "order": 14,
+            "request": 4,
+            "event": "verification_submitted",
+            "elapsed_ms": 5692.012,
+            "session": 1,
+            "challenge_elapsed_ms": 8,
+            "family": null
+          },
+          {
+            "order": 15,
+            "request": 4,
+            "event": "challenge_consumed",
+            "elapsed_ms": 5692.027,
+            "session": 1,
+            "challenge_elapsed_ms": 8,
+            "family": null
+          },
+          {
+            "order": 16,
+            "request": 4,
+            "event": "session_issued",
+            "elapsed_ms": 5692.33,
+            "session": 1,
+            "challenge_elapsed_ms": 8,
+            "family": null
+          },
+          {
+            "order": 17,
+            "request": 4,
+            "event": "access_decision",
+            "elapsed_ms": 5692.346,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 18,
+            "request": 4,
+            "event": "request_completed",
+            "elapsed_ms": 5693.584,
+            "status": 200,
+            "duration_ms": 2.914
+          },
+          {
+            "order": 19,
+            "request": 5,
+            "event": "request_started",
+            "elapsed_ms": 5707.09,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 20,
+            "request": 5,
+            "event": "protected_page_requested",
+            "elapsed_ms": 5708.868,
+            "session": 1,
+            "challenge_elapsed_ms": 24,
+            "family": null
+          },
+          {
+            "order": 21,
+            "request": 5,
+            "event": "access_decision",
+            "elapsed_ms": 5708.883,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 22,
+            "request": 5,
+            "event": "request_completed",
+            "elapsed_ms": 5710.048,
+            "status": 503,
+            "duration_ms": 2.928
+          }
+        ],
+        "request_count": 5,
+        "truncated": false
+      },
+      "CLIENT_REPORTED_UNTRUSTED": {
+        "values_retained": false
+      },
+      "metadata_trust": "operator supplied; not verified identity",
+      "provenance": {
+        "source_run": 6,
+        "original_cohort": "manual_firefox",
+        "original_label": null,
+        "correction_basis": "Operator confirmed in conversation that every run was manually operated in Chrome; dropdown changed between runs."
+      }
+    },
+    {
+      "cohort": "manual_chrome",
+      "completed": true,
+      "label": "manual-human",
+      "SERVER_OBSERVED": {
+        "events": [
+          {
+            "order": 1,
+            "request": 1,
+            "event": "request_started",
+            "elapsed_ms": 2325.703,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 2,
+            "request": 1,
+            "event": "access_decision",
+            "elapsed_ms": 2328.206,
+            "decision": "CHALLENGE",
+            "session_valid": false,
+            "session_continuity": false
+          },
+          {
+            "order": 3,
+            "request": 1,
+            "event": "request_completed",
+            "elapsed_ms": 2329.123,
+            "status": 200,
+            "duration_ms": 3.386
+          },
+          {
+            "order": 4,
+            "request": 2,
+            "event": "request_started",
+            "elapsed_ms": 2353.901,
+            "route": "/challenge/client.js",
+            "method": "GET"
+          },
+          {
+            "order": 5,
+            "request": 2,
+            "event": "request_completed",
+            "elapsed_ms": 2355.297,
+            "status": 200,
+            "duration_ms": 1.348
+          },
+          {
+            "order": 6,
+            "request": 3,
+            "event": "request_started",
+            "elapsed_ms": 3670.33,
+            "route": "/challenge",
+            "method": "POST"
+          },
+          {
+            "order": 7,
+            "request": 3,
+            "event": "challenge_issued",
+            "elapsed_ms": 3673.323,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": null
+          },
+          {
+            "order": 8,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 3673.345,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "resource"
+          },
+          {
+            "order": 9,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 3673.357,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "protocol_action"
+          },
+          {
+            "order": 10,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 3673.367,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "metadata_reference"
+          },
+          {
+            "order": 11,
+            "request": 3,
+            "event": "request_completed",
+            "elapsed_ms": 3674.676,
+            "status": 200,
+            "duration_ms": 4.302
+          },
+          {
+            "order": 12,
+            "request": 4,
+            "event": "request_started",
+            "elapsed_ms": 3679.592,
+            "route": "/challenge/verify",
+            "method": "POST"
+          },
+          {
+            "order": 13,
+            "request": 4,
+            "event": "verification_submission",
+            "elapsed_ms": 3681.482,
+            "telemetry_present": true
+          },
+          {
+            "order": 14,
+            "request": 4,
+            "event": "verification_submitted",
+            "elapsed_ms": 3681.638,
+            "session": 1,
+            "challenge_elapsed_ms": 8,
+            "family": null
+          },
+          {
+            "order": 15,
+            "request": 4,
+            "event": "challenge_consumed",
+            "elapsed_ms": 3681.654,
+            "session": 1,
+            "challenge_elapsed_ms": 8,
+            "family": null
+          },
+          {
+            "order": 16,
+            "request": 4,
+            "event": "session_issued",
+            "elapsed_ms": 3681.992,
+            "session": 1,
+            "challenge_elapsed_ms": 8,
+            "family": null
+          },
+          {
+            "order": 17,
+            "request": 4,
+            "event": "access_decision",
+            "elapsed_ms": 3682.009,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 18,
+            "request": 4,
+            "event": "request_completed",
+            "elapsed_ms": 3683.672,
+            "status": 200,
+            "duration_ms": 4.032
+          },
+          {
+            "order": 19,
+            "request": 5,
+            "event": "request_started",
+            "elapsed_ms": 3695.463,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 20,
+            "request": 5,
+            "event": "protected_page_requested",
+            "elapsed_ms": 3698.692,
+            "session": 1,
+            "challenge_elapsed_ms": 24,
+            "family": null
+          },
+          {
+            "order": 21,
+            "request": 5,
+            "event": "access_decision",
+            "elapsed_ms": 3698.708,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 22,
+            "request": 5,
+            "event": "request_completed",
+            "elapsed_ms": 3699.332,
+            "status": 503,
+            "duration_ms": 3.844
+          }
+        ],
+        "request_count": 5,
+        "truncated": false
+      },
+      "CLIENT_REPORTED_UNTRUSTED": {
+        "values_retained": false
+      },
+      "metadata_trust": "operator supplied; not verified identity",
+      "provenance": {
+        "source_run": 7,
+        "original_cohort": "manual_mobile",
+        "original_label": null,
+        "correction_basis": "Operator confirmed in conversation that every run was manually operated in Chrome; dropdown changed between runs."
+      }
+    },
+    {
+      "cohort": "manual_chrome",
+      "completed": false,
+      "label": null,
+      "SERVER_OBSERVED": {
+        "events": [],
+        "request_count": 0,
+        "truncated": false
+      },
+      "CLIENT_REPORTED_UNTRUSTED": {
+        "values_retained": false
+      },
+      "metadata_trust": "operator supplied; not verified identity",
+      "provenance": {
+        "source_run": 8,
+        "original_cohort": "manual_chrome",
+        "original_label": null,
+        "correction_basis": "Operator confirmed in conversation that every run was manually operated in Chrome; dropdown changed between runs."
+      }
+    },
+    {
+      "cohort": "manual_chrome",
+      "completed": true,
+      "label": "manual-human",
+      "SERVER_OBSERVED": {
+        "events": [
+          {
+            "order": 1,
+            "request": 1,
+            "event": "request_started",
+            "elapsed_ms": 2165.937,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 2,
+            "request": 1,
+            "event": "access_decision",
+            "elapsed_ms": 2168.124,
+            "decision": "CHALLENGE",
+            "session_valid": false,
+            "session_continuity": false
+          },
+          {
+            "order": 3,
+            "request": 1,
+            "event": "request_completed",
+            "elapsed_ms": 2168.988,
+            "status": 200,
+            "duration_ms": 3.017
+          },
+          {
+            "order": 4,
+            "request": 2,
+            "event": "request_started",
+            "elapsed_ms": 2189.955,
+            "route": "/challenge/client.js",
+            "method": "GET"
+          },
+          {
+            "order": 5,
+            "request": 2,
+            "event": "request_completed",
+            "elapsed_ms": 2190.914,
+            "status": 200,
+            "duration_ms": 0.918
+          },
+          {
+            "order": 6,
+            "request": 3,
+            "event": "request_started",
+            "elapsed_ms": 3232.204,
+            "route": "/challenge",
+            "method": "POST"
+          },
+          {
+            "order": 7,
+            "request": 3,
+            "event": "challenge_issued",
+            "elapsed_ms": 3235.082,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": null
+          },
+          {
+            "order": 8,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 3235.098,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "resource"
+          },
+          {
+            "order": 9,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 3235.119,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "metadata_reference"
+          },
+          {
+            "order": 10,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 3235.126,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "protocol_action"
+          },
+          {
+            "order": 11,
+            "request": 3,
+            "event": "request_completed",
+            "elapsed_ms": 3236.032,
+            "status": 200,
+            "duration_ms": 3.795
+          },
+          {
+            "order": 12,
+            "request": 4,
+            "event": "request_started",
+            "elapsed_ms": 3240.12,
+            "route": "/challenge/verify",
+            "method": "POST"
+          },
+          {
+            "order": 13,
+            "request": 4,
+            "event": "verification_submission",
+            "elapsed_ms": 3241.434,
+            "telemetry_present": true
+          },
+          {
+            "order": 14,
+            "request": 4,
+            "event": "verification_submitted",
+            "elapsed_ms": 3241.557,
+            "session": 1,
+            "challenge_elapsed_ms": 6,
+            "family": null
+          },
+          {
+            "order": 15,
+            "request": 4,
+            "event": "challenge_consumed",
+            "elapsed_ms": 3241.569,
+            "session": 1,
+            "challenge_elapsed_ms": 6,
+            "family": null
+          },
+          {
+            "order": 16,
+            "request": 4,
+            "event": "session_issued",
+            "elapsed_ms": 3241.809,
+            "session": 1,
+            "challenge_elapsed_ms": 6,
+            "family": null
+          },
+          {
+            "order": 17,
+            "request": 4,
+            "event": "access_decision",
+            "elapsed_ms": 3241.822,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 18,
+            "request": 4,
+            "event": "request_completed",
+            "elapsed_ms": 3242.951,
+            "status": 200,
+            "duration_ms": 2.795
+          },
+          {
+            "order": 19,
+            "request": 5,
+            "event": "request_started",
+            "elapsed_ms": 3257.276,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 20,
+            "request": 5,
+            "event": "protected_page_requested",
+            "elapsed_ms": 3258.746,
+            "session": 1,
+            "challenge_elapsed_ms": 23,
+            "family": null
+          },
+          {
+            "order": 21,
+            "request": 5,
+            "event": "access_decision",
+            "elapsed_ms": 3258.757,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 22,
+            "request": 5,
+            "event": "request_completed",
+            "elapsed_ms": 3259.332,
+            "status": 503,
+            "duration_ms": 2.033
+          }
+        ],
+        "request_count": 5,
+        "truncated": false
+      },
+      "CLIENT_REPORTED_UNTRUSTED": {
+        "values_retained": false
+      },
+      "metadata_trust": "operator supplied; not verified identity",
+      "provenance": {
+        "source_run": 9,
+        "original_cohort": "resource_explorer",
+        "original_label": null,
+        "correction_basis": "Operator confirmed in conversation that every run was manually operated in Chrome; dropdown changed between runs."
+      }
+    },
+    {
+      "cohort": "manual_chrome",
+      "completed": true,
+      "label": "manual-human",
+      "SERVER_OBSERVED": {
+        "events": [
+          {
+            "order": 1,
+            "request": 1,
+            "event": "request_started",
+            "elapsed_ms": 2258.594,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 2,
+            "request": 1,
+            "event": "access_decision",
+            "elapsed_ms": 2261.509,
+            "decision": "CHALLENGE",
+            "session_valid": false,
+            "session_continuity": false
+          },
+          {
+            "order": 3,
+            "request": 1,
+            "event": "request_completed",
+            "elapsed_ms": 2262.527,
+            "status": 200,
+            "duration_ms": 3.9
+          },
+          {
+            "order": 4,
+            "request": 2,
+            "event": "request_started",
+            "elapsed_ms": 2281.144,
+            "route": "/challenge/client.js",
+            "method": "GET"
+          },
+          {
+            "order": 5,
+            "request": 2,
+            "event": "request_completed",
+            "elapsed_ms": 2282.043,
+            "status": 200,
+            "duration_ms": 0.866
+          },
+          {
+            "order": 6,
+            "request": 3,
+            "event": "request_started",
+            "elapsed_ms": 3396.296,
+            "route": "/challenge",
+            "method": "POST"
+          },
+          {
+            "order": 7,
+            "request": 3,
+            "event": "challenge_issued",
+            "elapsed_ms": 3397.71,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": null
+          },
+          {
+            "order": 8,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 3397.722,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "protocol_action"
+          },
+          {
+            "order": 9,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 3397.729,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "resource"
+          },
+          {
+            "order": 10,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 3397.735,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "metadata_reference"
+          },
+          {
+            "order": 11,
+            "request": 3,
+            "event": "request_completed",
+            "elapsed_ms": 3398.468,
+            "status": 200,
+            "duration_ms": 2.147
+          },
+          {
+            "order": 12,
+            "request": 4,
+            "event": "request_started",
+            "elapsed_ms": 3404.644,
+            "route": "/challenge/verify",
+            "method": "POST"
+          },
+          {
+            "order": 13,
+            "request": 4,
+            "event": "verification_submission",
+            "elapsed_ms": 3406.071,
+            "telemetry_present": true
+          },
+          {
+            "order": 14,
+            "request": 4,
+            "event": "verification_submitted",
+            "elapsed_ms": 3406.22,
+            "session": 1,
+            "challenge_elapsed_ms": 8,
+            "family": null
+          },
+          {
+            "order": 15,
+            "request": 4,
+            "event": "challenge_consumed",
+            "elapsed_ms": 3406.234,
+            "session": 1,
+            "challenge_elapsed_ms": 8,
+            "family": null
+          },
+          {
+            "order": 16,
+            "request": 4,
+            "event": "session_issued",
+            "elapsed_ms": 3406.544,
+            "session": 1,
+            "challenge_elapsed_ms": 8,
+            "family": null
+          },
+          {
+            "order": 17,
+            "request": 4,
+            "event": "access_decision",
+            "elapsed_ms": 3406.56,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 18,
+            "request": 4,
+            "event": "request_completed",
+            "elapsed_ms": 3407.884,
+            "status": 200,
+            "duration_ms": 3.198
+          },
+          {
+            "order": 19,
+            "request": 5,
+            "event": "request_started",
+            "elapsed_ms": 3424.469,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 20,
+            "request": 5,
+            "event": "protected_page_requested",
+            "elapsed_ms": 3426.147,
+            "session": 1,
+            "challenge_elapsed_ms": 28,
+            "family": null
+          },
+          {
+            "order": 21,
+            "request": 5,
+            "event": "access_decision",
+            "elapsed_ms": 3426.178,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 22,
+            "request": 5,
+            "event": "request_completed",
+            "elapsed_ms": 3429.735,
+            "status": 503,
+            "duration_ms": 5.234
+          },
+          {
+            "order": 23,
+            "request": 6,
+            "event": "request_started",
+            "elapsed_ms": 5419.79,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 24,
+            "request": 6,
+            "event": "protected_page_requested",
+            "elapsed_ms": 5422.971,
+            "session": 1,
+            "challenge_elapsed_ms": 2024,
+            "family": null
+          },
+          {
+            "order": 25,
+            "request": 6,
+            "event": "access_decision",
+            "elapsed_ms": 5422.998,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 26,
+            "request": 6,
+            "event": "request_completed",
+            "elapsed_ms": 5424.158,
+            "status": 503,
+            "duration_ms": 4.322
+          }
+        ],
+        "request_count": 6,
+        "truncated": false
+      },
+      "CLIENT_REPORTED_UNTRUSTED": {
+        "values_retained": false
+      },
+      "metadata_trust": "operator supplied; not verified identity",
+      "provenance": {
+        "source_run": 10,
+        "original_cohort": "protocol_explorer",
+        "original_label": null,
+        "correction_basis": "Operator confirmed in conversation that every run was manually operated in Chrome; dropdown changed between runs."
+      }
+    },
+    {
+      "cohort": "manual_chrome",
+      "completed": true,
+      "label": "manual-human",
+      "SERVER_OBSERVED": {
+        "events": [
+          {
+            "order": 1,
+            "request": 1,
+            "event": "request_started",
+            "elapsed_ms": 2779.685,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 2,
+            "request": 1,
+            "event": "access_decision",
+            "elapsed_ms": 2782.948,
+            "decision": "CHALLENGE",
+            "session_valid": false,
+            "session_continuity": false
+          },
+          {
+            "order": 3,
+            "request": 1,
+            "event": "request_completed",
+            "elapsed_ms": 2784.372,
+            "status": 200,
+            "duration_ms": 4.628
+          },
+          {
+            "order": 4,
+            "request": 2,
+            "event": "request_started",
+            "elapsed_ms": 2814.651,
+            "route": "/challenge/client.js",
+            "method": "GET"
+          },
+          {
+            "order": 5,
+            "request": 2,
+            "event": "request_completed",
+            "elapsed_ms": 2816.381,
+            "status": 200,
+            "duration_ms": 1.669
+          },
+          {
+            "order": 6,
+            "request": 3,
+            "event": "request_started",
+            "elapsed_ms": 3963.649,
+            "route": "/challenge",
+            "method": "POST"
+          },
+          {
+            "order": 7,
+            "request": 3,
+            "event": "challenge_issued",
+            "elapsed_ms": 3965.641,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": null
+          },
+          {
+            "order": 8,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 3965.658,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "protocol_action"
+          },
+          {
+            "order": 9,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 3965.666,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "resource"
+          },
+          {
+            "order": 10,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 3965.673,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "metadata_reference"
+          },
+          {
+            "order": 11,
+            "request": 3,
+            "event": "request_completed",
+            "elapsed_ms": 3966.573,
+            "status": 200,
+            "duration_ms": 2.89
+          },
+          {
+            "order": 12,
+            "request": 4,
+            "event": "request_started",
+            "elapsed_ms": 3972.23,
+            "route": "/challenge/verify",
+            "method": "POST"
+          },
+          {
+            "order": 13,
+            "request": 4,
+            "event": "verification_submission",
+            "elapsed_ms": 3973.56,
+            "telemetry_present": true
+          },
+          {
+            "order": 14,
+            "request": 4,
+            "event": "verification_submitted",
+            "elapsed_ms": 3973.668,
+            "session": 1,
+            "challenge_elapsed_ms": 8,
+            "family": null
+          },
+          {
+            "order": 15,
+            "request": 4,
+            "event": "challenge_consumed",
+            "elapsed_ms": 3973.678,
+            "session": 1,
+            "challenge_elapsed_ms": 8,
+            "family": null
+          },
+          {
+            "order": 16,
+            "request": 4,
+            "event": "session_issued",
+            "elapsed_ms": 3973.885,
+            "session": 1,
+            "challenge_elapsed_ms": 8,
+            "family": null
+          },
+          {
+            "order": 17,
+            "request": 4,
+            "event": "access_decision",
+            "elapsed_ms": 3973.896,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 18,
+            "request": 4,
+            "event": "request_completed",
+            "elapsed_ms": 3975.042,
+            "status": 200,
+            "duration_ms": 2.768
+          },
+          {
+            "order": 19,
+            "request": 5,
+            "event": "request_started",
+            "elapsed_ms": 3987.66,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 20,
+            "request": 5,
+            "event": "protected_page_requested",
+            "elapsed_ms": 3989.47,
+            "session": 1,
+            "challenge_elapsed_ms": 23,
+            "family": null
+          },
+          {
+            "order": 21,
+            "request": 5,
+            "event": "access_decision",
+            "elapsed_ms": 3989.483,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 22,
+            "request": 5,
+            "event": "request_completed",
+            "elapsed_ms": 3990.184,
+            "status": 503,
+            "duration_ms": 2.5
+          }
+        ],
+        "request_count": 5,
+        "truncated": false
+      },
+      "CLIENT_REPORTED_UNTRUSTED": {
+        "values_retained": false
+      },
+      "metadata_trust": "operator supplied; not verified identity",
+      "provenance": {
+        "source_run": 11,
+        "original_cohort": "telemetry_omitting_explorer",
+        "original_label": null,
+        "correction_basis": "Operator confirmed in conversation that every run was manually operated in Chrome; dropdown changed between runs."
+      }
+    },
+    {
+      "cohort": "manual_chrome",
+      "completed": true,
+      "label": "manual-human",
+      "SERVER_OBSERVED": {
+        "events": [
+          {
+            "order": 1,
+            "request": 1,
+            "event": "request_started",
+            "elapsed_ms": 2173.784,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 2,
+            "request": 1,
+            "event": "access_decision",
+            "elapsed_ms": 2176.214,
+            "decision": "CHALLENGE",
+            "session_valid": false,
+            "session_continuity": false
+          },
+          {
+            "order": 3,
+            "request": 1,
+            "event": "request_completed",
+            "elapsed_ms": 2177.528,
+            "status": 200,
+            "duration_ms": 3.698
+          },
+          {
+            "order": 4,
+            "request": 2,
+            "event": "request_started",
+            "elapsed_ms": 2210.293,
+            "route": "/challenge/client.js",
+            "method": "GET"
+          },
+          {
+            "order": 5,
+            "request": 2,
+            "event": "request_completed",
+            "elapsed_ms": 2211.967,
+            "status": 200,
+            "duration_ms": 1.616
+          },
+          {
+            "order": 6,
+            "request": 3,
+            "event": "request_started",
+            "elapsed_ms": 3448.127,
+            "route": "/challenge",
+            "method": "POST"
+          },
+          {
+            "order": 7,
+            "request": 3,
+            "event": "challenge_issued",
+            "elapsed_ms": 3450.934,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": null
+          },
+          {
+            "order": 8,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 3450.955,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "metadata_reference"
+          },
+          {
+            "order": 9,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 3450.965,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "resource"
+          },
+          {
+            "order": 10,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 3450.974,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "protocol_action"
+          },
+          {
+            "order": 11,
+            "request": 3,
+            "event": "request_completed",
+            "elapsed_ms": 3452.141,
+            "status": 200,
+            "duration_ms": 3.967
+          },
+          {
+            "order": 12,
+            "request": 4,
+            "event": "request_started",
+            "elapsed_ms": 3457.821,
+            "route": "/challenge/verify",
+            "method": "POST"
+          },
+          {
+            "order": 13,
+            "request": 4,
+            "event": "verification_submission",
+            "elapsed_ms": 3459.157,
+            "telemetry_present": true
+          },
+          {
+            "order": 14,
+            "request": 4,
+            "event": "verification_submitted",
+            "elapsed_ms": 3459.286,
+            "session": 1,
+            "challenge_elapsed_ms": 8,
+            "family": null
+          },
+          {
+            "order": 15,
+            "request": 4,
+            "event": "challenge_consumed",
+            "elapsed_ms": 3459.298,
+            "session": 1,
+            "challenge_elapsed_ms": 8,
+            "family": null
+          },
+          {
+            "order": 16,
+            "request": 4,
+            "event": "session_issued",
+            "elapsed_ms": 3459.583,
+            "session": 1,
+            "challenge_elapsed_ms": 8,
+            "family": null
+          },
+          {
+            "order": 17,
+            "request": 4,
+            "event": "access_decision",
+            "elapsed_ms": 3459.597,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 18,
+            "request": 4,
+            "event": "request_completed",
+            "elapsed_ms": 3460.646,
+            "status": 200,
+            "duration_ms": 2.789
+          },
+          {
+            "order": 19,
+            "request": 5,
+            "event": "request_started",
+            "elapsed_ms": 3473.489,
+            "route": "protected_page",
+            "method": "GET"
+          },
+          {
+            "order": 20,
+            "request": 5,
+            "event": "protected_page_requested",
+            "elapsed_ms": 3475.436,
+            "session": 1,
+            "challenge_elapsed_ms": 24,
+            "family": null
+          },
+          {
+            "order": 21,
+            "request": 5,
+            "event": "access_decision",
+            "elapsed_ms": 3475.448,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 22,
+            "request": 5,
+            "event": "request_completed",
+            "elapsed_ms": 3475.93,
+            "status": 503,
+            "duration_ms": 2.414
+          },
+          {
+            "order": 23,
+            "request": 6,
+            "event": "request_started",
+            "elapsed_ms": 18715.041,
+            "route": "protected_api",
+            "method": "GET"
+          },
+          {
+            "order": 24,
+            "request": 6,
+            "event": "protected_api_requested",
+            "elapsed_ms": 18717.723,
+            "session": 1,
+            "challenge_elapsed_ms": 15266,
+            "family": null
+          },
+          {
+            "order": 25,
+            "request": 6,
+            "event": "access_decision",
+            "elapsed_ms": 18717.749,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 26,
+            "request": 6,
+            "event": "request_completed",
+            "elapsed_ms": 18718.712,
+            "status": 503,
+            "duration_ms": 3.639
+          },
+          {
+            "order": 27,
+            "request": 7,
+            "event": "request_started",
+            "elapsed_ms": 20510.714,
+            "route": "protected_api",
+            "method": "GET"
+          },
+          {
+            "order": 28,
+            "request": 7,
+            "event": "protected_api_requested",
+            "elapsed_ms": 20514.282,
+            "session": 1,
+            "challenge_elapsed_ms": 17062,
+            "family": null
+          },
+          {
+            "order": 29,
+            "request": 7,
+            "event": "access_decision",
+            "elapsed_ms": 20514.318,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 30,
+            "request": 7,
+            "event": "request_completed",
+            "elapsed_ms": 20515.619,
+            "status": 503,
+            "duration_ms": 4.855
+          }
+        ],
+        "request_count": 7,
+        "truncated": false
+      },
+      "CLIENT_REPORTED_UNTRUSTED": {
+        "values_retained": false
+      },
+      "metadata_trust": "operator supplied; not verified identity",
+      "provenance": {
+        "source_run": 12,
+        "original_cohort": "stopin_aware_adversary",
+        "original_label": null,
+        "correction_basis": "Operator confirmed in conversation that every run was manually operated in Chrome; dropdown changed between runs."
+      }
+    },
+    {
+      "cohort": "manual_chrome",
+      "completed": false,
+      "label": null,
+      "SERVER_OBSERVED": {
+        "events": [
+          {
+            "order": 1,
+            "request": 1,
+            "event": "request_started",
+            "elapsed_ms": 3247.725,
+            "route": "protected_api",
+            "method": "GET"
+          },
+          {
+            "order": 2,
+            "request": 1,
+            "event": "access_decision",
+            "elapsed_ms": 3249.217,
+            "decision": "CHALLENGE",
+            "session_valid": false,
+            "session_continuity": false
+          },
+          {
+            "order": 3,
+            "request": 1,
+            "event": "request_completed",
+            "elapsed_ms": 3249.752,
+            "status": 200,
+            "duration_ms": 2.003
+          },
+          {
+            "order": 4,
+            "request": 2,
+            "event": "request_started",
+            "elapsed_ms": 3266.834,
+            "route": "/challenge/client.js",
+            "method": "GET"
+          },
+          {
+            "order": 5,
+            "request": 2,
+            "event": "request_completed",
+            "elapsed_ms": 3267.594,
+            "status": 200,
+            "duration_ms": 0.733
+          },
+          {
+            "order": 6,
+            "request": 3,
+            "event": "request_started",
+            "elapsed_ms": 4411.558,
+            "route": "/challenge",
+            "method": "POST"
+          },
+          {
+            "order": 7,
+            "request": 3,
+            "event": "challenge_issued",
+            "elapsed_ms": 4413.409,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": null
+          },
+          {
+            "order": 8,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 4413.449,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "metadata_reference"
+          },
+          {
+            "order": 9,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 4413.459,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "resource"
+          },
+          {
+            "order": 10,
+            "request": 3,
+            "event": "experiment_exposed",
+            "elapsed_ms": 4413.467,
+            "session": 1,
+            "challenge_elapsed_ms": 0,
+            "family": "protocol_action"
+          },
+          {
+            "order": 11,
+            "request": 3,
+            "event": "request_completed",
+            "elapsed_ms": 4414.544,
+            "status": 200,
+            "duration_ms": 2.953
+          },
+          {
+            "order": 12,
+            "request": 4,
+            "event": "request_started",
+            "elapsed_ms": 4417.626,
+            "route": "/challenge/verify",
+            "method": "POST"
+          },
+          {
+            "order": 13,
+            "request": 4,
+            "event": "verification_submission",
+            "elapsed_ms": 4418.404,
+            "telemetry_present": true
+          },
+          {
+            "order": 14,
+            "request": 4,
+            "event": "verification_submitted",
+            "elapsed_ms": 4418.489,
+            "session": 1,
+            "challenge_elapsed_ms": 5,
+            "family": null
+          },
+          {
+            "order": 15,
+            "request": 4,
+            "event": "challenge_consumed",
+            "elapsed_ms": 4418.497,
+            "session": 1,
+            "challenge_elapsed_ms": 5,
+            "family": null
+          },
+          {
+            "order": 16,
+            "request": 4,
+            "event": "session_issued",
+            "elapsed_ms": 4418.652,
+            "session": 1,
+            "challenge_elapsed_ms": 5,
+            "family": null
+          },
+          {
+            "order": 17,
+            "request": 4,
+            "event": "access_decision",
+            "elapsed_ms": 4418.66,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 18,
+            "request": 4,
+            "event": "request_completed",
+            "elapsed_ms": 4419.926,
+            "status": 200,
+            "duration_ms": 2.275
+          },
+          {
+            "order": 19,
+            "request": 5,
+            "event": "request_started",
+            "elapsed_ms": 4430.828,
+            "route": "protected_api",
+            "method": "GET"
+          },
+          {
+            "order": 20,
+            "request": 5,
+            "event": "protected_api_requested",
+            "elapsed_ms": 4432.526,
+            "session": 1,
+            "challenge_elapsed_ms": 18,
+            "family": null
+          },
+          {
+            "order": 21,
+            "request": 5,
+            "event": "access_decision",
+            "elapsed_ms": 4432.539,
+            "decision": "ALLOW",
+            "session_valid": true,
+            "session_continuity": true
+          },
+          {
+            "order": 22,
+            "request": 5,
+            "event": "request_completed",
+            "elapsed_ms": 4433.01,
+            "status": 503,
+            "duration_ms": 2.16
+          }
+        ],
+        "request_count": 5,
+        "truncated": false
+      },
+      "CLIENT_REPORTED_UNTRUSTED": {
+        "values_retained": false
+      },
+      "metadata_trust": "operator supplied; not verified identity",
+      "provenance": {
+        "source_run": 13,
+        "original_cohort": "manual_chrome",
+        "original_label": null,
+        "correction_basis": "Operator confirmed in conversation that every run was manually operated in Chrome; dropdown changed between runs."
+      }
+    }
+  ],
+  "collection_context": {
+    "source_file": "human-vs-automation-results (1).json",
+    "source_sha256": "4c7bb5f5e4615459735c9a338ede291003fd9efb9b1bf28f0fb56949b0ed778f",
+    "source_exported_at": "2026-09-21T09:29:05.968339+00:00",
+    "label_source": "Post-run operator confirmation in conversation; not independent identity verification",
+    "limitation": "Protected requests returned 503; not successful end-to-end content access. Four unfinished records excluded from aggregates."
+  }
+}

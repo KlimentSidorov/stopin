@@ -1,0 +1,311 @@
+﻿{
+    "events":  [
+                   {
+                       "order":  1,
+                       "at":  574684.968373,
+                       "run":  null,
+                       "event":  "request",
+                       "method":  "GET",
+                       "route":  "start"
+                   },
+                   {
+                       "order":  2,
+                       "at":  574684.968435,
+                       "run":  1,
+                       "event":  "issued",
+                       "variant":  "comment",
+                       "lifetime_seconds":  90
+                   },
+                   {
+                       "order":  3,
+                       "at":  574684.968541,
+                       "run":  1,
+                       "event":  "response",
+                       "route":  "start",
+                       "status":  200,
+                       "bytes":  256,
+                       "protected_bytes":  0
+                   },
+                   {
+                       "order":  4,
+                       "at":  574685.013491,
+                       "run":  1,
+                       "event":  "request",
+                       "method":  "GET",
+                       "route":  "script"
+                   },
+                   {
+                       "order":  5,
+                       "at":  574685.013539,
+                       "run":  1,
+                       "event":  "response",
+                       "route":  "script",
+                       "status":  200,
+                       "bytes":  154,
+                       "protected_bytes":  0
+                   },
+                   {
+                       "order":  6,
+                       "at":  574685.024809,
+                       "run":  1,
+                       "event":  "request",
+                       "method":  "POST",
+                       "route":  "complete"
+                   },
+                   {
+                       "order":  7,
+                       "at":  574685.024832,
+                       "run":  1,
+                       "event":  "authorized"
+                   },
+                   {
+                       "order":  8,
+                       "at":  574685.024851,
+                       "run":  1,
+                       "event":  "response",
+                       "route":  "complete",
+                       "status":  204,
+                       "bytes":  0,
+                       "protected_bytes":  0
+                   },
+                   {
+                       "order":  9,
+                       "at":  574685.134109,
+                       "run":  1,
+                       "event":  "request",
+                       "method":  "GET",
+                       "route":  "private"
+                   },
+                   {
+                       "order":  10,
+                       "at":  574685.13412,
+                       "run":  1,
+                       "event":  "origin_dispatch",
+                       "route":  "private"
+                   },
+                   {
+                       "order":  11,
+                       "at":  574685.13474,
+                       "run":  1,
+                       "event":  "response",
+                       "route":  "private",
+                       "status":  200,
+                       "bytes":  30,
+                       "protected_bytes":  30
+                   },
+                   {
+                       "order":  12,
+                       "at":  574689.666509,
+                       "run":  1,
+                       "event":  "request",
+                       "method":  "GET",
+                       "route":  "start"
+                   },
+                   {
+                       "order":  13,
+                       "at":  574689.66654,
+                       "run":  2,
+                       "event":  "issued",
+                       "variant":  "inert_manifest",
+                       "lifetime_seconds":  90
+                   },
+                   {
+                       "order":  14,
+                       "at":  574689.666612,
+                       "run":  2,
+                       "event":  "response",
+                       "route":  "start",
+                       "status":  200,
+                       "bytes":  305,
+                       "protected_bytes":  0
+                   },
+                   {
+                       "order":  15,
+                       "at":  574689.731566,
+                       "run":  2,
+                       "event":  "request",
+                       "method":  "GET",
+                       "route":  "script"
+                   },
+                   {
+                       "order":  16,
+                       "at":  574689.7316,
+                       "run":  2,
+                       "event":  "response",
+                       "route":  "script",
+                       "status":  200,
+                       "bytes":  154,
+                       "protected_bytes":  0
+                   },
+                   {
+                       "order":  17,
+                       "at":  574689.737494,
+                       "run":  2,
+                       "event":  "request",
+                       "method":  "POST",
+                       "route":  "complete"
+                   },
+                   {
+                       "order":  18,
+                       "at":  574689.737511,
+                       "run":  2,
+                       "event":  "authorized"
+                   },
+                   {
+                       "order":  19,
+                       "at":  574689.737521,
+                       "run":  2,
+                       "event":  "response",
+                       "route":  "complete",
+                       "status":  204,
+                       "bytes":  0,
+                       "protected_bytes":  0
+                   },
+                   {
+                       "order":  20,
+                       "at":  574689.743747,
+                       "run":  2,
+                       "event":  "request",
+                       "method":  "GET",
+                       "route":  "private"
+                   },
+                   {
+                       "order":  21,
+                       "at":  574689.743759,
+                       "run":  2,
+                       "event":  "origin_dispatch",
+                       "route":  "private"
+                   },
+                   {
+                       "order":  22,
+                       "at":  574689.74408,
+                       "run":  2,
+                       "event":  "response",
+                       "route":  "private",
+                       "status":  200,
+                       "bytes":  30,
+                       "protected_bytes":  30
+                   },
+                   {
+                       "order":  23,
+                       "at":  574691.12208,
+                       "run":  2,
+                       "event":  "request",
+                       "method":  "GET",
+                       "route":  "start"
+                   },
+                   {
+                       "order":  24,
+                       "at":  574691.122112,
+                       "run":  3,
+                       "event":  "issued",
+                       "variant":  "dormant_function",
+                       "lifetime_seconds":  90
+                   },
+                   {
+                       "order":  25,
+                       "at":  574691.12218,
+                       "run":  3,
+                       "event":  "response",
+                       "route":  "start",
+                       "status":  200,
+                       "bytes":  224,
+                       "protected_bytes":  0
+                   },
+                   {
+                       "order":  26,
+                       "at":  574691.192876,
+                       "run":  3,
+                       "event":  "request",
+                       "method":  "GET",
+                       "route":  "script"
+                   },
+                   {
+                       "order":  27,
+                       "at":  574691.192911,
+                       "run":  3,
+                       "event":  "response",
+                       "route":  "script",
+                       "status":  200,
+                       "bytes":  255,
+                       "protected_bytes":  0
+                   },
+                   {
+                       "order":  28,
+                       "at":  574691.199512,
+                       "run":  3,
+                       "event":  "request",
+                       "method":  "POST",
+                       "route":  "complete"
+                   },
+                   {
+                       "order":  29,
+                       "at":  574691.199534,
+                       "run":  3,
+                       "event":  "authorized"
+                   },
+                   {
+                       "order":  30,
+                       "at":  574691.199553,
+                       "run":  3,
+                       "event":  "response",
+                       "route":  "complete",
+                       "status":  204,
+                       "bytes":  0,
+                       "protected_bytes":  0
+                   },
+                   {
+                       "order":  31,
+                       "at":  574691.208241,
+                       "run":  3,
+                       "event":  "request",
+                       "method":  "GET",
+                       "route":  "private"
+                   },
+                   {
+                       "order":  32,
+                       "at":  574691.208254,
+                       "run":  3,
+                       "event":  "origin_dispatch",
+                       "route":  "private"
+                   },
+                   {
+                       "order":  33,
+                       "at":  574691.208512,
+                       "run":  3,
+                       "event":  "response",
+                       "route":  "private",
+                       "status":  200,
+                       "bytes":  30,
+                       "protected_bytes":  30
+                   },
+                   {
+                       "order":  34,
+                       "at":  574752.717084,
+                       "run":  null,
+                       "event":  "request",
+                       "method":  "GET",
+                       "route":  "report"
+                   }
+               ],
+    "runs":  [
+                 {
+                     "number":  1,
+                     "variant":  "comment",
+                     "tainted":  false,
+                     "granted":  true
+                 },
+                 {
+                     "number":  2,
+                     "variant":  "inert_manifest",
+                     "tainted":  false,
+                     "granted":  true
+                 },
+                 {
+                     "number":  3,
+                     "variant":  "dormant_function",
+                     "tainted":  false,
+                     "granted":  true
+                 }
+             ]
+}
