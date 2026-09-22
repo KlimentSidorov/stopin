@@ -11,6 +11,15 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse, Response
 
 VARIANTS = ("comment", "inert_manifest", "dormant_function")
+VARIANT_RENDERERS = {
+    "comment": lambda trap: (f"<!-- Optional application recovery index: {trap} -->", ""),
+    "inert_manifest": lambda trap: (
+        '<script type="application/json" id="optional-index">' +
+        json.dumps({"optional_application_index": trap}) + '</script>', ""),
+    "dormant_function": lambda trap: (
+        "<!-- Optional diagnostic helper is exported by bootstrap.js -->",
+        f'globalThis.stopinOptionalRecovery = () => fetch({json.dumps(trap)});'),
+}
 COOKIE = "stopin_lab_session"
 HEADERS = {"Cache-Control": "no-store", "X-Content-Type-Options": "nosniff",
            "Content-Security-Policy": "default-src 'none'; script-src 'self'; "
@@ -18,9 +27,10 @@ HEADERS = {"Cache-Control": "no-store", "X-Content-Type-Options": "nosniff",
 METHODS = ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "TRACE"]
 
 
-def create_lab(origin: httpx.AsyncClient, *, ttl=90, clock=time.monotonic):
+def create_lab(origin: httpx.AsyncClient, *, ttl=90, clock=time.monotonic, variants=None):
     """Caller owns origin client. No origin I/O until an explicit lab grant exists."""
     app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
+    renderers = dict(VARIANT_RENDERERS if variants is None else variants)
     sessions = {}
     events = []
     app.state.sessions = sessions
@@ -68,8 +78,8 @@ def create_lab(origin: httpx.AsyncClient, *, ttl=90, clock=time.monotonic):
         if path in ("", "start") and request.method == "GET":
             if len(sessions) >= 500 or len(events) >= 50000:
                 return respond(reply(status=503))
-            variant = request.query_params.get("variant") or secrets.choice(VARIANTS)
-            if variant not in VARIANTS:
+            variant = request.query_params.get("variant") or secrets.choice(tuple(renderers))
+            if variant not in renderers:
                 return respond(reply(status=400))
             sid, capability, optional = (secrets.token_urlsafe(24) for _ in range(3))
             run = dict(number=len(sessions) + 1, variant=variant, expires=clock() + ttl,
@@ -78,15 +88,10 @@ def create_lab(origin: httpx.AsyncClient, *, ttl=90, clock=time.monotonic):
             sessions[sid] = run
             event("issued", run, variant=variant, lifetime_seconds=ttl)
             trap = f"/__trap/optional/{optional}"
-            hints = {
-                "comment": f"<!-- Optional application recovery index: {trap} -->",
-                "inert_manifest": '<script type="application/json" id="optional-index">' +
-                    json.dumps({"optional_application_index": trap}) + '</script>',
-                "dormant_function": "<!-- Optional diagnostic helper is exported by bootstrap.js -->",
-            }
+            hint, _ = renderers[variant](trap)
             response = HTMLResponse('<!doctype html><meta charset="utf-8">'
                 '<title>Loading</title><link rel="icon" href="data:,">'
-                + hints[variant] + f'<script src="/__trap/script/{capability}"></script>',
+                + hint + f'<script src="/__trap/script/{capability}"></script>',
                 headers=HEADERS)
             response.set_cookie(COOKIE, sid, httponly=True, samesite="strict", max_age=ttl)
             return respond(response)
@@ -103,8 +108,7 @@ def create_lab(origin: httpx.AsyncClient, *, ttl=90, clock=time.monotonic):
         valid = len(pieces) == 3 and secrets.compare_digest(pieces[2], run["capability"])
         if route == "script" and valid and request.method == "GET":
             trap = f"/__trap/optional/{run['optional']}"
-            optional_js = (f'globalThis.stopinOptionalRecovery = () => fetch({json.dumps(trap)});'
-                           if run["variant"] == "dormant_function" else "")
+            _, optional_js = renderers[run["variant"]](trap)
             script = optional_js + f'''(async () => {{
 const r = await fetch('/__trap/complete/{run["capability"]}', {{method: 'POST'}});
 if (r.ok) location.replace('/private');
