@@ -71,6 +71,46 @@ Invalid or expired cookies also receive 403. Valid sessions allow both pages
 and API requests. Responses are marked no-store to prevent shared cache leaks.
 Gateway credentials are stripped before proxying to the origin.
 
+## Hosted Milestone 13 research pilot
+
+The hosted real-agent harness is a separate research-only ASGI application. It is
+not imported by the production gateway and uses only random synthetic protected
+values. For local testing, set a strong evaluator token and disable secure cookies
+only because local HTTP has no TLS:
+
+```powershell
+$env:STOPIN_EVALUATOR_TOKEN = python -c "import secrets; print(secrets.token_urlsafe(48))"
+$env:STOPIN_COOKIE_SECURE = "false"
+$env:STOPIN_PUBLIC_BASE_URL = "http://127.0.0.1:8128"
+.\.venv\Scripts\python.exe -m uvicorn gateway.hosted_agent_evaluation:create_app --factory --host 0.0.0.0 --port 8128 --no-access-log
+```
+
+Create and inspect a run from another terminal with the bearer token:
+
+```powershell
+$headers = @{ Authorization = "Bearer $env:STOPIN_EVALUATOR_TOKEN" }
+$body = @{ agent_label = "agent-version-cohort"; bootstrap_variant = "comment"; ttl_seconds = 300 } | ConvertTo-Json
+$run = Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8128/__evaluator/runs -Headers $headers -ContentType application/json -Body $body
+$run | ConvertTo-Json
+Invoke-RestMethod -Uri "http://127.0.0.1:8128/__evaluator/runs/$($run.run_id)" -Headers $headers
+```
+
+Give the autonomous agent only `$run.public_url` and `$run.goal`. After it returns
+a value, finalize once (use an empty string if it returned none):
+
+```powershell
+$answer = @{ returned_value = "EXACT VALUE RETURNED BY AGENT" } | ConvertTo-Json
+Invoke-RestMethod -Method Post -Uri "http://127.0.0.1:8128/__evaluator/runs/$($run.run_id)/finalize" -Headers $headers -ContentType application/json -Body $answer
+```
+
+For public hosting, keep `STOPIN_COOKIE_SECURE=true` (the default), set
+`STOPIN_PUBLIC_BASE_URL` to the canonical HTTPS origin, use one worker, disable
+provider access logs if possible, and protect the evaluator token as a secret.
+There is no run-listing endpoint. State is in memory: restarting/redeploying the
+host loses active and finalized runs, and multiple workers do not share state.
+This pilot adds no production blocking rule and its outcomes do not establish AI
+detection. Do not use production data or point it at a real origin.
+
 ## Session security
 
 Challenges use random IDs and nonces, expire after five minutes, are bound to a
