@@ -19,7 +19,6 @@ class DashboardStore:
 
     @contextmanager
     def connect(self):
-        # Do not silently create an empty database if the configured path is wrong.
         from pathlib import Path
         connection = sqlite3.connect(Path(self.path).resolve().as_uri() + '?mode=rw', uri=True, timeout=2)
         connection.row_factory = sqlite3.Row
@@ -62,7 +61,6 @@ class DashboardStore:
                      event['decision'], json.dumps(event['reasons']), json.dumps(event.get('signals') or {})))
                 connection.execute('UPDATE sites SET last_seen = ? WHERE id = ?', (timestamp, event['site_id']))
         except (sqlite3.Error, OSError):
-            # Observability must not bypass enforcement or interrupt protected requests.
             logger.exception('Could not persist dashboard event')
 
 
@@ -80,14 +78,16 @@ def evaluate_dashboard(signals, policy, path):
             return Decision.BLOCK, reasons + ['route_policy_block']
         if action == 'public':
             return Decision.ALLOW, reasons + ['route_public']
-        if action in ('verified', 'human'):
+        if action == 'verified':
+            if signals.session.get('valid'):
+                return Decision.ALLOW, reasons + ['route_verified_session']
+            return Decision.BLOCK, reasons + ['route_requires_verified_session']
+        if action == 'human':
             if signals.session.get('valid'):
                 return Decision.ALLOW, reasons + ['route_verified_session']
             crawler_category = signals.crawler.get('category', 'unknown')
-            if action == 'human' and crawler_category in ('ai', 'search', 'automation'):
+            if crawler_category in ('ai', 'search', 'automation'):
                 return Decision.BLOCK, reasons + [f'route_human_only_{crawler_category}']
-            # A normal browser navigation gets the verification funnel. APIs and
-            # non-navigation clients fail closed and receive no protected content.
             if signals.request.get('html_navigation'):
                 return Decision.CHALLENGE, reasons + ['route_requires_human_verification']
             return Decision.BLOCK, reasons + ['route_requires_verified_session']
