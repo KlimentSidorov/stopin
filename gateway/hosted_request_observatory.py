@@ -62,8 +62,11 @@ def create_app(*, evaluator_token=None, public_base_url=None, cookie_secure=None
 
     @app.middleware("http")
     async def collect(request, call_next):
-        # Never observe the authenticated evaluator control plane.
-        if not request.url.path.startswith("/__evaluator/"):
+        # Never observe either authenticated research control plane. A browser can
+        # retain the run cookie while the evaluator inspects results, so recording
+        # /__observatory would contaminate the measured client route sequence.
+        is_control = request.url.path.startswith(("/__evaluator/", "/__observatory/"))
+        if not is_control:
             run = run_for_request(request)
             if run is not None:
                 item = observe_request(request, route=route_name(request))
