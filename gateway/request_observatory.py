@@ -8,6 +8,8 @@ from __future__ import annotations
 
 from typing import Mapping
 
+# Values useful for comparing browser/HTTP behavior. These are observations only:
+# every one of them can be omitted or forged by a client or changed by middleware.
 SAFE_VALUE_HEADERS = (
     "accept",
     "accept-language",
@@ -24,9 +26,18 @@ SAFE_VALUE_HEADERS = (
     "sec-purpose",
     "x-requested-with",
 )
-SENSITIVE_HEADER_NAMES = {
-    "authorization", "cookie", "proxy-authorization", "set-cookie",
-    "x-forwarded-for", "forwarded", "x-real-ip", "cf-connecting-ip",
+
+# Only these client-relevant names are exported. In particular, do not export a
+# catch-all list of headers: a hosting/CDN layer may inject IP, tracing, routing,
+# or provider-specific metadata that is outside this experiment's client boundary.
+SAFE_HEADER_NAMES = frozenset(SAFE_VALUE_HEADERS) | {
+    "cache-control",
+    "pragma",
+    "content-type",
+    "content-length",
+    "origin",
+    "referer",
+    "upgrade-insecure-requests",
 }
 MAX_VALUE_LENGTH = 512
 
@@ -39,7 +50,7 @@ def _clean(value: str) -> str:
 def observe_request(request, *, route: str) -> dict:
     """Return a bounded observation safe to expose on the authenticated control plane."""
     names = sorted({name.lower() for name in request.headers
-                    if name.lower() not in SENSITIVE_HEADER_NAMES})
+                    if name.lower() in SAFE_HEADER_NAMES})
     values = {}
     for name in SAFE_VALUE_HEADERS:
         value = request.headers.get(name)
@@ -49,7 +60,7 @@ def observe_request(request, *, route: str) -> dict:
         "route": route,
         "method": request.method,
         "http_version": request.scope.get("http_version", ""),
-        "header_names": names[:64],
+        "header_names": names,
         "headers": values,
         "has_cookie": bool(request.headers.get("cookie")),
         "has_authorization": bool(request.headers.get("authorization")),
