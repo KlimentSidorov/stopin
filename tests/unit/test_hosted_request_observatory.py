@@ -61,6 +61,30 @@ def test_observatory_tracks_browser_flow_and_cookie_continuity():
         assert body["summary"]["cookie_seen_after_entry"] is True
 
 
+def test_observatory_correlates_capability_routes_even_without_wrapper_cookie():
+    app = create_app(evaluator_token=TOKEN, public_base_url="https://pilot.example",
+                     cookie_secure=False)
+    with TestClient(app, base_url="http://pilot.example") as browser:
+        created = browser.post("/__evaluator/runs", headers=AUTH, json={
+            "agent_label": "mounted-browser-control", "bootstrap_variant": "comment",
+            "ttl_seconds": 300}).json()
+        path = created["public_url"].removeprefix("https://pilot.example")
+        page = browser.get(path)
+        script_path = re.search(r'src="([^"]+)"', page.text)[1]
+
+        # A separate no-cookie client simulates the outer mounted wrapper not seeing
+        # evaluator cookie state. The opaque route capability must still correlate
+        # the request to the run, while the evaluator itself correctly denies it.
+        with TestClient(app, base_url="http://pilot.example") as no_cookie:
+            response = no_cookie.get(script_path)
+            assert response.status_code == 403
+
+        body = browser.get(f'/__observatory/runs/{created["run_id"]}', headers=AUTH).json()
+        assert body["summary"]["routes"] == ["start", "script"]
+        assert body["observations"][1]["has_cookie"] is False
+        assert script_path not in str(body)
+
+
 def test_observatory_control_plane_is_private_and_not_self_observed():
     app = create_app(evaluator_token=TOKEN, public_base_url="https://pilot.example",
                      cookie_secure=False)
