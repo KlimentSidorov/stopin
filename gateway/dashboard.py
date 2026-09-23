@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from gateway.policies.evaluator import Decision, evaluate_signals
 
 logger = logging.getLogger(__name__)
+ROUTE_ACTIONS = ('default', 'block', 'verified', 'public', 'human')
 
 
 class DashboardStore:
@@ -39,7 +40,7 @@ class DashboardStore:
         if len(policy['routes']) > 50:
             raise ValueError('Too many route rules')
         for rule in policy['routes']:
-            if (not isinstance(rule, dict) or rule.get('action') not in ('default', 'block', 'verified')
+            if (not isinstance(rule, dict) or rule.get('action') not in ROUTE_ACTIONS
                     or not isinstance(rule.get('pattern'), str)
                     or not re.fullmatch(r'/[a-zA-Z0-9_\-/.]*\*?', rule['pattern'])):
                 raise ValueError('Invalid route rule')
@@ -74,9 +75,21 @@ def evaluate_dashboard(signals, policy, path):
         matches = path.startswith(pattern[:-1]) if pattern.endswith('*') else path == pattern
         if not matches:
             continue
-        if rule['action'] == 'block':
+        action = rule['action']
+        if action == 'block':
             return Decision.BLOCK, reasons + ['route_policy_block']
-        if rule['action'] == 'verified' and not signals.session.get('valid'):
+        if action == 'public':
+            return Decision.ALLOW, reasons + ['route_public']
+        if action in ('verified', 'human'):
+            if signals.session.get('valid'):
+                return Decision.ALLOW, reasons + ['route_verified_session']
+            crawler_category = signals.crawler.get('category', 'unknown')
+            if action == 'human' and crawler_category in ('ai', 'search', 'automation'):
+                return Decision.BLOCK, reasons + [f'route_human_only_{crawler_category}']
+            # A normal browser navigation gets the verification funnel. APIs and
+            # non-navigation clients fail closed and receive no protected content.
+            if signals.request.get('html_navigation'):
+                return Decision.CHALLENGE, reasons + ['route_requires_human_verification']
             return Decision.BLOCK, reasons + ['route_requires_verified_session']
         break
     if policy['strictness'] == 'strict' and 'multiple_signal_groups' in reasons:
