@@ -41,13 +41,32 @@ def create_app(*, evaluator_token=None, public_base_url=None, cookie_secure=None
                 if secrets.compare_digest(run.get("entry", ""), entry):
                     return run
             return None
+
+        # Cookie correlation is preferred, but ASGI mounting can leave the wrapper's
+        # Request object without the cookie that the mounted evaluator later sees.
+        # Correlate opaque public capability paths as a server-side fallback. The
+        # capabilities themselves are never exported by the observatory.
         sid = request.cookies.get("stopin_hosted_evaluation", "")
-        if not sid:
-            return None
-        for run in evaluator.state.runs.values():
-            candidate = run.get("session") or ""
-            if candidate and secrets.compare_digest(candidate, sid):
-                return run
+        if sid:
+            for run in evaluator.state.runs.values():
+                candidate = run.get("session") or ""
+                if candidate and secrets.compare_digest(candidate, sid):
+                    return run
+
+        pieces = path.split("/")
+        if len(pieces) == 4 and pieces[1] == "__evaluation":
+            family, capability = pieces[2], pieces[3]
+            field = {
+                "script": "script",
+                "optional": "optional",
+                "complete": "complete",
+                "protected": "protected",
+            }.get(family)
+            if field:
+                for run in evaluator.state.runs.values():
+                    candidate = run.get(field) or ""
+                    if candidate and secrets.compare_digest(candidate, capability):
+                        return run
         return None
 
     def route_name(request):
