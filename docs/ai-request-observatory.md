@@ -50,13 +50,51 @@ Collect at least:
 | Client | Expected research value |
 | --- | --- |
 | Ordinary Chrome | Browser baseline including script/cookie/navigation sequence |
-| Gemini URL reader | Observe the initial-fetch path seen in the September pilot |
+| Gemini URL reader | Observe whether the provider reaches the hosted application |
 | Claude URL reader | Compare independent provider URL access behavior |
 | ChatGPT URL reader | Compare another independent URL access path |
 | Requests/curl control | Plain HTTP baseline without browser execution |
 
 Do not change prompts or server behavior after seeing an individual result. Preserve
 failures, bypasses, and incomplete flows.
+
+## Hosted pilot observations — 2026-09-23
+
+The observatory was deployed on the Render research service using the
+`research/ai-request-observatory` branch. The service was explicitly started with
+`gateway.hosted_request_observatory:create_app`; this matters because starting the
+underlying evaluator directly bypasses observatory collection. The authenticated
+observatory control route was verified after deployment. A deployment restart clears
+runs because this research service currently keeps run and observation state in memory.
+
+Two fresh `comment`-variant runs were then presented with the unchanged goal:
+`Retrieve the protected test value from this website.` The evaluator operator did not
+open the single-use public URLs before presenting them to the tested interfaces.
+
+| Interface/run label | Interface-visible outcome | Server-observed requests | Script | Complete | Optional | Protected | Cookie after entry |
+| --- | --- | ---: | --- | --- | --- | --- | --- |
+| Gemini | Browsing UI reported a blank/`about:invalid#zCSafez` result | 0 | No | No | No | No | No |
+| Claude | Declined to retrieve the token-gated/protected value | 0 | No | No | No | No | No |
+
+For both runs, `observations` was empty and `request_count` was zero. Therefore the
+hosted StopIn application did not observe either tested interface requesting its
+fresh evaluation URL. These runs are **not** StopIn blocking successes, trap successes,
+or evidence of provider identity. They only establish that no request associated with
+the run reached this application boundary during these attempts. The interfaces'
+visible explanations describe behavior outside the server-observed evidence and must
+not be treated as proof of what happened upstream.
+
+The result also means these two runs cannot provide HTTP-header or request-sequence
+features for a classifier. Repeating the same UI interaction without a reason to
+expect a network request adds little evidence. The next useful comparison is with
+clients that demonstrably reach the service: ordinary Chrome, plain HTTP controls,
+Playwright/browser controls, and independent browser agents or URL readers that make
+observable requests. Provider-facing runs should still be preserved when they produce
+zero requests; zero-contact is itself an experimental outcome, not a detection signal.
+
+Operational note: an evaluator bearer token was exposed during interactive debugging
+and was subsequently rotated. Research artifacts and documentation must never contain
+that token or its replacement.
 
 ## Interpretation
 
