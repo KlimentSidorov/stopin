@@ -1,5 +1,6 @@
 import hmac
 
+from gateway.detection.crawler_identity import classify_user_agent
 from gateway.detection.signals import Signals
 from gateway.sessions.tokens import verify_access_token
 
@@ -35,6 +36,7 @@ def collect_signals(request, settings, sessions, evidence):
                   **interaction.get("behavior", {})},
         tripwires=interaction.get("tripwires", {"activated": False}),
         rate={"requests_10s": count, "burst": count > 30},
+        crawler=classify_user_agent(request.headers.get("user-agent")),
         session={"id": session_id if valid else None, "valid": valid,
                  "invalid_token": bool(token and not valid),
                  "continuity": record is not None,
