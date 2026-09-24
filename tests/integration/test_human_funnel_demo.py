@@ -86,6 +86,7 @@ def test_human_funnel_never_leaks_protected_origin_to_declared_ai(tmp_path):
                     headers={"accept": "text/html", "user-agent": "GPTBot/1.2"},
                 )
                 assert blocked.status_code == 403
+                assert blocked.content == b""
                 assert PROTECTED_MARKER.encode() not in blocked.content
                 assert origin_calls == []
 
@@ -97,7 +98,9 @@ def test_human_funnel_never_leaks_protected_origin_to_declared_ai(tmp_path):
                     },
                 )
                 assert browser.status_code == 200
-                assert b"Verification required" in browser.content
+                # Assert protocol/security behavior rather than challenge-page wording.
+                assert b'/challenge/client.js' in browser.content
+                assert b"JavaScript is required to complete this verification." in browser.content
                 assert PROTECTED_MARKER.encode() not in browser.content
                 assert origin_calls == []
         finally:
