@@ -41,6 +41,3 @@ def create_app():
     # Direct origin requests fail before application routes execute. The credential
     # is stripped by OriginProtection before downstream application code runs.
     return OriginProtection(inner, os.environ["GATEWAY_ORIGIN_SECRET"])
-
-
-app = create_app()
