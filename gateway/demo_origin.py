@@ -5,26 +5,20 @@ verify that blocked clients never receive protected origin content.
 """
 import os
 
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse, JSONResponse, Response
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse, JSONResponse
 
-from gateway.origin.protection import validate_origin_request
+from gateway.origin.protection import OriginProtection
 
 PUBLIC_MARKER = "STOPIN-PUBLIC-DEMO"
 PROTECTED_MARKER = "STOPIN-PROTECTED-HUMAN-ONLY-7F4C9A"
 
 
 def create_app():
-    app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
-    secret = os.getenv("GATEWAY_ORIGIN_SECRET", "")
+    inner = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 
-    def authorized(request: Request):
-        return validate_origin_request(request, secret)
-
-    @app.get("/")
-    async def home(request: Request):
-        if not authorized(request):
-            return Response(status_code=403)
+    @inner.get("/")
+    async def home():
         return HTMLResponse(
             "<!doctype html><title>StopIn demo</title>"
             f"<h1>{PUBLIC_MARKER}</h1>"
@@ -32,23 +26,21 @@ def create_app():
             '<p><a href="/protected">Open human-only page</a></p>'
         )
 
-    @app.get("/protected")
-    async def protected(request: Request):
-        if not authorized(request):
-            return Response(status_code=403)
+    @inner.get("/protected")
+    async def protected():
         return HTMLResponse(
             "<!doctype html><title>Human-only content</title>"
             "<h1>Human-only content</h1>"
             f"<p id=protected-value>{PROTECTED_MARKER}</p>"
         )
 
-    @app.get("/api/protected")
-    async def protected_api(request: Request):
-        if not authorized(request):
-            return Response(status_code=403)
+    @inner.get("/api/protected")
+    async def protected_api():
         return JSONResponse({"protected_value": PROTECTED_MARKER})
 
-    return app
+    # Direct origin requests fail before application routes execute. The credential
+    # is stripped by OriginProtection before downstream application code runs.
+    return OriginProtection(inner, os.environ["GATEWAY_ORIGIN_SECRET"])
 
 
 app = create_app()
