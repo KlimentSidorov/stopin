@@ -11,6 +11,7 @@ from gateway.policies.evaluator import Decision, evaluate_signals
 
 logger = logging.getLogger(__name__)
 ROUTE_ACTIONS = ('default', 'block', 'verified', 'public', 'human')
+INTERNAL_DEMO_ORIGIN = 'internal://stopin-demo'
 
 
 class DashboardStore:
@@ -43,12 +44,14 @@ class DashboardStore:
                     or not isinstance(rule.get('pattern'), str)
                     or not re.fullmatch(r'/[a-zA-Z0-9_\-/.]*\*?', rule['pattern'])):
                 raise ValueError('Invalid route rule')
-        from urllib.parse import urlsplit
-        origin = urlsplit(row['origin_url'])
-        if (origin.scheme not in ('http', 'https') or not origin.hostname or origin.username
-                or origin.password or origin.query or origin.fragment or origin.path not in ('', '/')):
-            raise ValueError('Invalid dashboard origin')
-        return replace(settings, origin_url=row['origin_url']), policy
+        origin_url = row['origin_url']
+        if origin_url != INTERNAL_DEMO_ORIGIN:
+            from urllib.parse import urlsplit
+            origin = urlsplit(origin_url)
+            if (origin.scheme not in ('http', 'https') or not origin.hostname or origin.username
+                    or origin.password or origin.query or origin.fragment or origin.path not in ('', '/')):
+                raise ValueError('Invalid dashboard origin')
+        return replace(settings, origin_url=origin_url), policy
 
     def record(self, **event):
         timestamp = datetime.now(timezone.utc).isoformat(timespec='milliseconds').replace('+00:00', 'Z')
