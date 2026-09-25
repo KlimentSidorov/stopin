@@ -39,6 +39,30 @@ async def proxy_request(
     origin_url: str,
     origin_secret: str,
 ) -> httpx.Response:
+    # Development/demo origin used to prove the gateway boundary without requiring
+    # a second hosted application. It is reached only after the policy returned ALLOW.
+    # Production configuration rejects this scheme and must use a real HTTP(S) origin.
+    if origin_url == "builtin://demo":
+        path = "/" + request.path_params.get("path", "")
+        if path.startswith("/api/"):
+            return httpx.Response(200, json={
+                "protected": True,
+                "message": "STOPIN PROTECTED API CONTENT",
+                "access": "This payload was released only after the gateway returned ALLOW.",
+            })
+        return httpx.Response(
+            200,
+            text=(
+                "<!doctype html><html><head><meta charset='utf-8'>"
+                "<title>StopIn Protected Demo</title></head><body>"
+                "<h1>STOPIN PROTECTED CONTENT</h1>"
+                "<p>If you can read this sentence, the gateway allowed this request.</p>"
+                "<p id='secret'>Protected demo value: ORANGE-CASTLE-7429</p>"
+                "</body></html>"
+            ),
+            headers={"content-type": "text/html; charset=utf-8"},
+        )
+
     body = await request.body()
     target_url = f"{origin_url}/{request.path_params['path']}"
     if request.query_params:
