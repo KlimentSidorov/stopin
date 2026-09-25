@@ -25,7 +25,13 @@ def initialize(path, site_id, domain, origin_url):
         connection.execute('INSERT OR IGNORE INTO schema_migrations VALUES (1)')
         connection.execute('INSERT OR IGNORE INTO sites(id, domain, origin_url) VALUES (?,?,?)',
                            (site_id, domain, origin_url))
-    # Reuse exactly the validation used during gateway startup.
+        # A persisted local demo row may still point at localhost:3000 from an older
+        # deployment. When the runtime explicitly selects the built-in demo origin,
+        # refresh only that research/demo row so the hosted proof is self-contained.
+        # Real HTTP(S) customer origins are never overwritten by this branch.
+        if origin_url == 'builtin://demo':
+            connection.execute('UPDATE sites SET origin_url = ? WHERE id = ?',
+                               (origin_url, site_id))
     DashboardStore(path).configuration(settings)
 
 
