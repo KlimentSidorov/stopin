@@ -64,6 +64,10 @@ class Settings:
         previous = json.loads(os.getenv("GATEWAY_TOKEN_PREVIOUS_SECRETS", "[]"))
         if not isinstance(previous, list):
             raise ValueError("GATEWAY_TOKEN_PREVIOUS_SECRETS must be a JSON list")
+        default_origin = "http://localhost:3000" if production else "builtin://demo"
+        # The demo secret exists only so the normal origin-boundary validation path is
+        # exercised in development. Production still requires an explicit real secret.
+        default_origin_secret = "" if production else "stopin-development-demo-origin-secret-2026"
         return cls(
             measurement_enabled=(os.getenv("GATEWAY_MEASUREMENT_ENABLED", "false").lower() == "true"
                                  and os.getenv("GATEWAY_ENV", "development") == "development"),
@@ -77,28 +81,11 @@ class Settings:
             challenge_rate_limit=int(os.getenv("GATEWAY_CHALLENGE_RATE_LIMIT", "20")),
             max_body_bytes=int(os.getenv("GATEWAY_MAX_BODY_BYTES", "1048576")),
             dashboard_db=os.getenv("GATEWAY_DASHBOARD_DB", ""),
-            origin_url=os.getenv(
-                "GATEWAY_ORIGIN_URL",
-                "http://localhost:3000",
-            ).rstrip("/"),
-            site_id=os.getenv(
-                "GATEWAY_SITE_ID",
-                "local",
-            ),
-            dev_access_token=os.getenv(
-                "GATEWAY_DEV_ACCESS_TOKEN",
-                "",
-            ),
-            token_secret=os.getenv(
-                "GATEWAY_TOKEN_SECRET",
-                secrets.token_urlsafe(32),
-            ),
-            origin_secret=os.getenv("GATEWAY_ORIGIN_SECRET", ""),
+            origin_url=os.getenv("GATEWAY_ORIGIN_URL", default_origin).rstrip("/"),
+            site_id=os.getenv("GATEWAY_SITE_ID", "local"),
+            dev_access_token=os.getenv("GATEWAY_DEV_ACCESS_TOKEN", ""),
+            token_secret=os.getenv("GATEWAY_TOKEN_SECRET", secrets.token_urlsafe(32)),
+            origin_secret=os.getenv("GATEWAY_ORIGIN_SECRET", default_origin_secret),
             cookie_secure=os.getenv("GATEWAY_COOKIE_SECURE", "false").lower() == "true",
-            timeout_seconds=float(
-                os.getenv(
-                    "GATEWAY_TIMEOUT_SECONDS",
-                    "10",
-                )
-            ),
+            timeout_seconds=float(os.getenv("GATEWAY_TIMEOUT_SECONDS", "10")),
         )
