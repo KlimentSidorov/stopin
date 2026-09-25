@@ -12,7 +12,7 @@ from gateway.demo_origin import PROTECTED_MARKER
 from gateway.origin.protection import OriginProtection
 
 
-def test_human_funnel_never_leaks_protected_origin_to_declared_ai(tmp_path):
+def test_human_funnel_is_transparent_and_never_leaks_to_declared_ai(tmp_path):
     async def scenario():
         secret = "demo-origin-secret-0123456789abcdef"
         inner = FastAPI()
@@ -90,19 +90,31 @@ def test_human_funnel_never_leaks_protected_origin_to_declared_ai(tmp_path):
                 assert PROTECTED_MARKER.encode() not in blocked.content
                 assert origin_calls == []
 
+                raw_fetch = await client.get(
+                    "/protected",
+                    headers={"accept": "text/html", "user-agent": "python-requests/2.32"},
+                )
+                assert raw_fetch.status_code == 403
+                assert PROTECTED_MARKER.encode() not in raw_fetch.content
+                assert origin_calls == []
+
                 browser = await client.get(
                     "/protected",
                     headers={
-                        "accept": "text/html",
-                        "user-agent": "Mozilla/5.0 Chrome/153.0.0.0 Safari/537.36",
+                        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153.0.0.0 Safari/537.36",
+                        "sec-fetch-mode": "navigate",
+                        "sec-fetch-dest": "document",
+                        "sec-fetch-site": "none",
+                        "sec-fetch-user": "?1",
+                        "sec-ch-ua": '"Google Chrome";v="153", "Chromium";v="153"',
                     },
                 )
                 assert browser.status_code == 200
-                # Assert protocol/security behavior rather than challenge-page wording.
-                assert b'/challenge/client.js' in browser.content
-                assert b"JavaScript is required to complete this verification." in browser.content
-                assert PROTECTED_MARKER.encode() not in browser.content
-                assert origin_calls == []
+                assert PROTECTED_MARKER.encode() in browser.content
+                assert b"Verify access" not in browser.content
+                assert b"/challenge/client.js" not in browser.content
+                assert origin_calls == ["protected"]
         finally:
             await upstream.aclose()
 
