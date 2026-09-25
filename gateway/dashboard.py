@@ -11,7 +11,7 @@ from gateway.policies.evaluator import Decision, evaluate_signals
 
 logger = logging.getLogger(__name__)
 ROUTE_ACTIONS = ('default', 'block', 'verified', 'public', 'human')
-INTERNAL_DEMO_ORIGIN = 'internal://stopin-demo'
+INTERNAL_DEMO_ORIGINS = ('builtin://demo', 'internal://stopin-demo')
 
 
 class DashboardStore:
@@ -45,7 +45,7 @@ class DashboardStore:
                     or not re.fullmatch(r'/[a-zA-Z0-9_\-/.]*\*?', rule['pattern'])):
                 raise ValueError('Invalid route rule')
         origin_url = row['origin_url']
-        if origin_url != INTERNAL_DEMO_ORIGIN:
+        if origin_url not in INTERNAL_DEMO_ORIGINS:
             from urllib.parse import urlsplit
             origin = urlsplit(origin_url)
             if (origin.scheme not in ('http', 'https') or not origin.hostname or origin.username
@@ -86,10 +86,6 @@ def evaluate_dashboard(signals, policy, path):
                 return Decision.ALLOW, reasons + ['route_verified_session']
             return Decision.BLOCK, reasons + ['route_requires_verified_session']
         if action == 'human':
-            # "human" is retained as the dashboard/API compatibility name. Its UX is
-            # now transparent: declared crawlers/automation are denied before origin
-            # access, while a normal modern browser navigation proceeds without a
-            # visible challenge. This is access policy, not proof of human identity.
             crawler_category = signals.crawler.get('category', 'unknown')
             if crawler_category in ('ai', 'search', 'automation'):
                 return Decision.BLOCK, reasons + [f'route_human_only_{crawler_category}']
