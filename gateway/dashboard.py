@@ -91,9 +91,9 @@ def evaluate_dashboard(signals, policy, path):
                 return Decision.BLOCK, reasons + [f'route_human_only_{crawler_category}']
             if signals.session.get('valid'):
                 return Decision.ALLOW, reasons + ['route_verified_session']
-            if signals.request.get('html_navigation'):
-                return Decision.ALLOW, reasons + ['route_transparent_html_navigation']
-            return Decision.BLOCK, reasons + ['route_requires_html_navigation']
+            if signals.request.get('browser_navigation'):
+                return Decision.ALLOW, reasons + ['route_transparent_browser_navigation']
+            return Decision.BLOCK, reasons + ['route_requires_browser_navigation']
         break
     if policy['strictness'] == 'strict' and 'multiple_signal_groups' in reasons:
         return Decision.BLOCK, reasons + ['strict_policy']
