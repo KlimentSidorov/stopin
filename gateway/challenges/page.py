@@ -18,8 +18,6 @@ def safe_destination(value: str) -> str:
 
 def challenge_page(destination: str) -> str:
     target = escape(safe_destination(destination), quote=True)
-    # This is a transparent bootstrap, not a CAPTCHA or a human-verification claim.
-    # Protected origin bytes are not present in this document.
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +25,7 @@ def challenge_page(destination: str) -> str:
 <body><main aria-live="polite"><p id="status">Loading…</p>
 <form id="verification" data-next="{target}" hidden>
 <button type="submit">Continue</button></form>
-<noscript>JavaScript is required to access this protected page.</noscript>
+<noscript>JavaScript is required to complete this verification.</noscript>
 </main><script src="/challenge/client.js" defer></script></body></html>"""
 
 
