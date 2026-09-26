@@ -108,6 +108,23 @@ def create_app(settings: Settings | None = None,
     async def health():
         return {"status": "ok"}
 
+    @app.get("/public-test")
+    async def public_test():
+        # Deliberately bypasses gateway policy. This is a harmless control page so
+        # external browser/AI tools can prove they can reach this deployment before
+        # we compare their result with the protected root route.
+        marker = secrets.token_hex(8).upper()
+        return HTMLResponse(
+            "<!doctype html><html><head><meta charset='utf-8'>"
+            "<title>StopIn Public Test</title></head><body>"
+            "<h1>STOPIN PUBLIC TEST PAGE</h1>"
+            "<p>This page is intentionally public. No verification is required.</p>"
+            f"<p id='public-value'>Public test value: PUBLIC-{marker}</p>"
+            "<p>The protected comparison remains at the site root.</p>"
+            "</body></html>",
+            headers={**PRIVATE_HEADERS, "X-StopIn-Control": "public-test"},
+        )
+
     @app.get("/ready")
     def ready():
         try:
@@ -250,9 +267,6 @@ def create_app(settings: Settings | None = None,
                 destination += "?" + request.url.query
             response = page(destination)
         elif decision is Decision.BLOCK:
-            # Conceal protected routes from denied clients. The dashboard/log still
-            # records BLOCK and its reason codes, while the public response reveals
-            # neither the origin content nor that a protected resource exists.
             response = Response(status_code=404, headers=PRIVATE_HEADERS)
         else:
             try:
