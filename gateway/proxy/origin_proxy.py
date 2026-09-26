@@ -1,3 +1,4 @@
+import secrets
 from http.cookies import SimpleCookie
 
 import httpx
@@ -33,6 +34,15 @@ def forwarded_headers(request: Request) -> dict[str, str]:
     return headers
 
 
+def demo_value() -> str:
+    """Fresh canary for every authorized demo response.
+
+    This makes repeated retrieval tests unambiguous: a client cannot pass a later
+    test merely by repeating a protected value learned during an earlier run.
+    """
+    return "STOPIN-" + secrets.token_hex(8).upper()
+
+
 async def proxy_request(
     client: httpx.AsyncClient,
     request: Request,
@@ -41,23 +51,26 @@ async def proxy_request(
 ) -> httpx.Response:
     if origin_url == "builtin://demo":
         path = "/" + request.path_params.get("path", "")
+        value = demo_value()
         if path.startswith("/api/"):
             return httpx.Response(200, json={
                 "protected": True,
+                "protected_value": value,
                 "message": "STOPIN PROTECTED API CONTENT",
                 "access": "This payload was released only after the gateway returned ALLOW.",
-            })
+            }, headers={"cache-control": "no-store"})
         return httpx.Response(
             200,
             text=(
                 "<!doctype html><html><head><meta charset='utf-8'>"
+                "<meta http-equiv='Cache-Control' content='no-store'>"
                 "<title>StopIn Protected Demo</title></head><body>"
                 "<h1>STOPIN PROTECTED CONTENT</h1>"
                 "<p>If you can read this sentence, the gateway allowed this request.</p>"
-                "<p id='secret'>Protected demo value: COBALT-RIVER-9186</p>"
+                f"<p id='secret'>Protected demo value: {value}</p>"
                 "</body></html>"
             ),
-            headers={"content-type": "text/html; charset=utf-8"},
+            headers={"content-type": "text/html; charset=utf-8", "cache-control": "no-store"},
         )
 
     body = await request.body()
