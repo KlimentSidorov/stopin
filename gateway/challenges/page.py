@@ -18,45 +18,47 @@ def safe_destination(value: str) -> str:
 
 def challenge_page(destination: str) -> str:
     target = escape(safe_destination(destination), quote=True)
+    # This is a transparent bootstrap, not a CAPTCHA or a human-verification claim.
+    # Protected origin bytes are not present in this document.
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Verify access</title></head>
-<body><main><h1>Verify access</h1>
-<p>Continue to request a short-lived access session.</p>
-<form id="verification" data-next="{target}">
+<meta name="robots" content="noindex,nofollow"><title>Loading</title></head>
+<body><main aria-live="polite"><p id="status">Loading…</p>
+<form id="verification" data-next="{target}" hidden>
 <button type="submit">Continue</button></form>
-<p id="status" role="status" aria-live="polite"></p>
-<noscript>JavaScript is required to complete this verification.</noscript>
+<noscript>JavaScript is required to access this protected page.</noscript>
 </main><script src="/challenge/client.js" defer></script></body></html>"""
 
 
 CLIENT_SCRIPT = """const form = document.getElementById('verification');
 const status = document.getElementById('status');
-form.addEventListener('submit', async (event) => {
-  event.preventDefault();
-  const button = form.querySelector('button');
-  button.disabled = true;
-  status.textContent = 'Verifying access...';
+let running = false;
+async function bootstrap(event) {
+  if (event) event.preventDefault();
+  if (running) return;
+  running = true;
   const started = performance.now();
   try {
     const issued = await fetch('/challenge', {
-      method: 'POST', credentials: 'same-origin',
+      method: 'POST', credentials: 'same-origin', cache: 'no-store',
       headers: {'Content-Type': 'application/json'}, body: '{}'
     });
     if (!issued.ok) throw new Error('issuance failed');
     const challenge = await issued.json();
     const verified = await fetch('/challenge/verify', {
-      method: 'POST', credentials: 'same-origin',
+      method: 'POST', credentials: 'same-origin', cache: 'no-store',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({...challenge, browser: {javascript: true,
         webdriver: navigator.webdriver === true, elapsed_ms: performance.now() - started}})
     });
     if (!verified.ok) throw new Error('verification failed');
-    window.location.assign(form.dataset.next);
+    window.location.replace(form.dataset.next);
   } catch (error) {
-    status.textContent = 'Verification failed. Please try again.';
-    button.disabled = false;
+    status.textContent = 'This page is unavailable.';
+    running = false;
   }
-});
+}
+form.addEventListener('submit', bootstrap);
+bootstrap();
 """
