@@ -39,9 +39,6 @@ async def proxy_request(
     origin_url: str,
     origin_secret: str,
 ) -> httpx.Response:
-    # Development/demo origin used to prove the gateway boundary without requiring
-    # a second hosted application. It is reached only after the policy returned ALLOW.
-    # Production configuration rejects this scheme and must use a real HTTP(S) origin.
     if origin_url == "builtin://demo":
         path = "/" + request.path_params.get("path", "")
         if path.startswith("/api/"):
@@ -57,7 +54,7 @@ async def proxy_request(
                 "<title>StopIn Protected Demo</title></head><body>"
                 "<h1>STOPIN PROTECTED CONTENT</h1>"
                 "<p>If you can read this sentence, the gateway allowed this request.</p>"
-                "<p id='secret'>Protected demo value: ORANGE-CASTLE-7429</p>"
+                "<p id='secret'>Protected demo value: COBALT-RIVER-9186</p>"
                 "</body></html>"
             ),
             headers={"content-type": "text/html; charset=utf-8"},
