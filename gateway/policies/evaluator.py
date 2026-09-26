@@ -11,15 +11,12 @@ class Decision(StrEnum):
 
 
 def evaluate_signals(signals: Signals) -> tuple[Decision, list[str]]:
-    """Deterministic prototype policy; reason codes are evidence, not AI scores."""
+    """Deterministic access policy; reason codes are evidence, not AI scores."""
     if signals.session.get("invalid_token"):
         return Decision.BLOCK, ["invalid_session"]
     if signals.session.get("development"):
         return Decision.ALLOW, ["valid_development_token"]
 
-    # Self-declared AI crawlers and obvious HTTP automation do not receive protected
-    # content. This is useful policy evidence, not proof of the caller's identity:
-    # a capable client can spoof its User-Agent and browser headers.
     crawler_category = signals.crawler.get("category")
     if crawler_category in ("ai", "automation"):
         return Decision.BLOCK, ["disallowed_crawler"]
@@ -52,12 +49,12 @@ def evaluate_signals(signals: Signals) -> tuple[Decision, list[str]]:
     if signals.session.get("valid"):
         return Decision.ALLOW, reasons + ["valid_verified_session"]
 
-    # Transparent funnel: do not trust Accept:text/html by itself. Many AI retrieval
-    # tools and simple scrapers send that header. Require the coherent navigation
-    # metadata emitted by the supported browser path. This remains a risk signal,
-    # not proof of humanity; sophisticated automation can reproduce browser traffic.
+    # A browser-looking GET is no longer enough to release protected content.
+    # It may enter the transparent bootstrap, which must establish a signed,
+    # server-side session before the origin can be reached. Non-browser fetchers
+    # receive the concealed block response instead.
     if signals.request.get("browser_navigation"):
-        return Decision.ALLOW, reasons + ["transparent_browser_navigation"]
+        return Decision.CHALLENGE, reasons + ["transparent_session_bootstrap"]
     return Decision.BLOCK, reasons + ["missing_browser_navigation"]
 
 
