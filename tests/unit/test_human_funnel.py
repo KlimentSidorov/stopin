@@ -18,7 +18,7 @@ def test_crawler_classifier_separates_declared_ai_search_and_http_tools():
     assert classify_user_agent('Mozilla/5.0 Chrome/153.0')['category'] == 'unknown'
 
 
-def test_public_route_is_open_but_human_route_is_transparent_for_browser_navigation():
+def test_public_route_is_open_but_human_route_bootstraps_browser_session():
     public = {'strictness': 'balanced', 'routes': [{'pattern': '/', 'action': 'public'}]}
     assert evaluate_dashboard(signals(category='ai'), public, '/')[0] == Decision.ALLOW
 
@@ -31,8 +31,8 @@ def test_public_route_is_open_but_human_route_is_transparent_for_browser_navigat
     decision, reasons = evaluate_dashboard(
         signals(browser_navigation=True), human, '/contact'
     )
-    assert decision == Decision.ALLOW
-    assert 'route_transparent_browser_navigation' in reasons
+    assert decision == Decision.CHALLENGE
+    assert 'route_transparent_session_bootstrap' in reasons
 
     for category in ('ai', 'search', 'automation'):
         decision, reasons = evaluate_dashboard(
