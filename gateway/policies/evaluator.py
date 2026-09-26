@@ -48,18 +48,16 @@ def evaluate_signals(signals: Signals) -> tuple[Decision, list[str]]:
                   bool(signals.request.get("header_inconsistent")),
                   bool(signals.browser.get("webdriver"))))
     if groups >= 2:
-        decision = Decision.CHALLENGE if signals.request.get("html_navigation") else Decision.BLOCK
-        return decision, reasons + ["multiple_signal_groups"]
+        return Decision.BLOCK, reasons + ["multiple_signal_groups"]
     if signals.session.get("valid"):
         return Decision.ALLOW, reasons + ["valid_verified_session"]
 
-    # Normal top-level browser navigation is transparent: no visible human puzzle or
-    # Continue button. This deliberately favors usability. It is not a humanity proof;
-    # sophisticated browser automation can reproduce these request properties.
-    if signals.request.get("browser_navigation"):
-        return Decision.ALLOW, reasons + ["browser_navigation"]
+    # Transparent funnel: ordinary top-level HTML navigation is allowed without a
+    # visible verification page. Known AI/automation crawlers were rejected above.
+    # This is intentionally not called proof of humanity: a sophisticated client can
+    # imitate browser headers, so stronger enforcement must combine server evidence.
     if signals.request.get("html_navigation"):
-        return Decision.CHALLENGE, reasons + ["new_session"]
+        return Decision.ALLOW, reasons + ["transparent_html_navigation"]
     return Decision.BLOCK, reasons + ["missing_session"]
 
 
