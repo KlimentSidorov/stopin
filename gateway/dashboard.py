@@ -92,7 +92,7 @@ def evaluate_dashboard(signals, policy, path):
             if signals.session.get('valid'):
                 return Decision.ALLOW, reasons + ['route_verified_session']
             if signals.request.get('browser_navigation'):
-                return Decision.ALLOW, reasons + ['route_transparent_browser_navigation']
+                return Decision.CHALLENGE, reasons + ['route_transparent_session_bootstrap']
             return Decision.BLOCK, reasons + ['route_requires_browser_navigation']
         break
     if policy['strictness'] == 'strict' and 'multiple_signal_groups' in reasons:
